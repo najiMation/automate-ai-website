@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automate.AI — Real ROI. No Fluff.</title>
+
+  <!--
+    Design System (ui-ux-pro-max):
+    Style   → Trust & Authority + Swiss Modernism (clean, professional, minimal)
+    Font    → Plus Jakarta Sans (B2B SaaS, friendly + professional, single family)
+    Colors  → bg #FAFAFA · text #0F172A · accent #0D9488 (teal-600) · border #E2E8F0
+    Pattern → Conversion-Optimised: proof above fold, CTA repeated, dark footer
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <style>
+/* ══════════════════════════════════════════════
+   TOKENS — Clean Light
+══════════════════════════════════════════════ */
+:root {
+  /* Backgrounds */
+  --bg:     #FAFAFA;
+  --bg2:    #F1F5F9;
+  --bg3:    #FFFFFF;
+  --dark:   #0F172A;
+
+  /* Accent — teal-600, professional & distinctive */
+  --accent:     #0D9488;
+  --accent-lt:  rgba(13,148,136,0.08);
+  --accent-bd:  rgba(13,148,136,0.22);
+  --accent-dk:  #0F766E;
+
+  /* Text */
+  --text:    #0F172A;
+  --text2:   #64748B;
+  --text3:   #94A3B8;
+
+  /* Borders & shadows */
+  --border:  #E2E8F0;
+  --border2: #CBD5E1;
+  --shadow:  0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow2: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+  --shadow3: 0 12px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+
+  /* Radii */
+  --r:    12px;
+  --r-sm: 8px;
+  --r-lg: 16px;
+}
+
+/* ══════════════════════════════════════════════
+   RESET
+══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* ══════════════════════════════════════════════
+   LAYOUT
+══════════════════════════════════════════════ */
+.container { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+section { padding: 96px 0; }
+
+/* ══════════════════════════════════════════════
+   TYPOGRAPHY
+══════════════════════════════════════════════ */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.eyebrow-line {
+  display: inline-block;
+  width: 18px; height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.hi { color: var(--accent); }
+
+.section-head { margin-bottom: 56px; }
+.section-head .eyebrow { margin-bottom: 14px; }
+.section-head h2 {
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  line-height: 1.12;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+.section-head p { font-size: 16px; color: var(--text2); line-height: 1.75; max-width: 480px; }
+.section-head.centered { text-align: center; }
+.section-head.centered p { margin: 0 auto; }
+
+/* ══════════════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--r-sm);
+  padding: 11px 20px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+  white-space: nowrap;
+}
+.btn:active { transform: scale(0.97) !important; }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.btn-accent { background: var(--accent); color: #FFFFFF; }
+.btn-accent:hover { background: var(--accent-dk); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(13,148,136,0.25); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border2);
+}
+.btn-outline:hover { border-color: var(--text2); background: var(--bg2); transform: translateY(-1px); }
+
+.btn-dark { background: var(--dark); color: #FFFFFF; }
+.btn-dark:hover { background: #1E293B; transform: translateY(-1px); box-shadow: var(--shadow2); }
+
+.btn-lg { padding: 14px 26px; font-size: 15px; border-radius: var(--r); }
+
+/* ══════════════════════════════════════════════
+   NAV
+══════════════════════════════════════════════ */
+#nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  padding: 18px 0;
+  transition: padding 0.3s, background 0.3s, border-color 0.3s, box-shadow 0.3s;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+}
+#nav.stuck {
+  background: rgba(250,250,250,0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 12px 0;
+  border-bottom-color: var(--border);
+  box-shadow: var(--shadow);
+}
+.nav-row { display: flex; align-items: center; }
+.logo {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.3px;
+  flex-shrink: 0;
+}
+.logo-dot { color: var(--accent); }
+.nav-links { display: flex; gap: 28px; list-style: none; margin: 0 auto 0 40px; }
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text2);
+  transition: color 0.18s;
+  cursor: pointer;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a:focus-visible { outline: 2px solid var(--accent); border-radius: 4px; }
+.nav-cta { margin-left: 20px; }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  margin-left: auto;
+  padding: 6px;
+  background: none;
+  border: none;
+}
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.25s; }
+
+/* ══════════════════════════════════════════════
+   MOBILE DRAWER
+══════════════════════════════════════════════ */
+.mobile-drawer {
+  display: none;
+  position: fixed;
+  top: 57px; left: 0; right: 0;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 32px 24px;
+  z-index: 99;
+  flex-direction: column;
+}
+.mobile-drawer.open { display: flex; }
+.mobile-drawer a {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text2);
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.18s;
+  cursor: pointer;
+}
+.mobile-drawer a:hover { color: var(--text); }
+.mobile-drawer .m-cta { color: var(--accent); border-bottom: none; padding-top: 16px; font-weight: 600; }
+
+/* ══════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 128px 0 96px;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px;
+  align-items: center;
+}
+.hero-eyebrow { margin-bottom: 24px; }
+.hero h1 {
+  font-size: clamp(38px, 5.2vw, 70px);
+  font-weight: 800;
+  letter-spacing: -2.5px;
+  line-height: 1.06;
+  margin-bottom: 22px;
+  color: var(--text);
+}
+.hero h1 em { font-style: italic; color: var(--text2); font-weight: 600; }
+.hero-sub { font-size: 17px; color: var(--text2); line-height: 1.8; max-width: 440px; margin-bottom: 36px; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
+
+/* Proof stats */
+.hero-proof { display: flex; gap: 32px; flex-wrap: wrap; padding-top: 28px; border-top: 1px solid var(--border); }
+.proof-num {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.proof-lbl { font-size: 12px; color: var(--text3); margin-top: 3px; font-weight: 400; }
+
+/* ── Metrics Panel ── */
+.metrics-panel {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow3);
+}
+.metrics-panel::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), #06B6D4);
+}
+.panel-bar {
+  padding: 11px 18px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dot { width: 9px; height: 9px; border-radius: 50%; }
+.dot-r { background: #FF5F57; }
+.dot-y { background: #FEBC2E; }
+.dot-g { background: #28C840; }
+.panel-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text2);
+  margin-left: 8px;
+}
+.metric-row { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+.metric-row:last-child { border-bottom: none; }
+.metric-name {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 7px;
+}
+.metric-vals {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.mv-before { color: var(--text3); text-decoration: line-through; }
+.mv-arr { color: var(--text3); font-size: 12px; }
+.mv-after { color: var(--accent); }
+.prog-track { height: 3px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.prog-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #06B6D4);
+  border-radius: 3px;
+  width: 0;
+  transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ══════════════════════════════════════════════
+   TRUST STRIP
+══════════════════════════════════════════════ */
+.trust {
+  padding: 24px 0;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+}
+.trust-row { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; justify-content: center; }
+.trust-lbl { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); white-space: nowrap; }
+.trust-names { display: flex; gap: 36px; flex-wrap: wrap; justify-content: center; }
+.trust-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text3);
+  transition: color 0.18s;
+  cursor: default;
+  letter-spacing: 0.02em;
+}
+.trust-name:hover { color: var(--text2); }
+
+/* ══════════════════════════════════════════════
+   SERVICES
+══════════════════════════════════════════════ */
+#services { background: var(--bg); }
+.services-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: end;
+  margin-bottom: 40px;
+}
+.svc-intro h2 { font-size: clamp(28px, 3.8vw, 48px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-top: 12px; }
+.svc-intro-body { font-size: 15px; color: var(--text2); line-height: 1.8; }
+
+.svc-list { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+
+.svc-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+  box-shadow: var(--shadow);
+  transition: border-color 0.22s, box-shadow 0.22s, transform 0.2s ease;
+}
+.svc-card:hover { border-color: var(--border2); box-shadow: var(--shadow3); transform: translateY(-3px); }
+.svc-card.featured { border-color: var(--accent-bd); background: rgba(13,148,136,0.02); }
+.svc-card.featured:hover { border-color: var(--accent); box-shadow: 0 12px 40px rgba(13,148,136,0.12); }
+
+.svc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.svc-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text3);
+  letter-spacing: 0.1em;
+}
+.svc-card.featured .svc-num { color: var(--accent); }
+.svc-arrow {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text3);
+  cursor: pointer;
+  transition: border-color 0.18s, color 0.18s;
+}
+.svc-card:hover .svc-arrow { border-color: var(--border2); color: var(--text2); }
+.svc-card.featured .svc-arrow { border-color: var(--accent-bd); color: var(--accent); }
+
+.svc-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+.svc-icon svg { width: 18px; height: 18px; }
+.svc-card.featured .svc-icon { background: var(--accent-lt); border-color: var(--accent-bd); color: var(--accent); }
+
+.feat-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  background: var(--accent-lt);
+  border: 1px solid var(--accent-bd);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+.svc-card h3 { font-size: 17px; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 8px; }
+.svc-card p { font-size: 13px; color: var(--text2); line-height: 1.75; margin-bottom: 20px; flex: 1; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  padding: 3px 9px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+}
+.svc-card.featured .chip { background: var(--accent-lt); border-color: var(--accent-bd); color: var(--accent); }
+
+/* ══════════════════════════════════════════════
+   PROCESS
+══════════════════════════════════════════════ */
+#process { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.proc-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; }
+
+.proc-card {
+  background: var(--bg3);
+  padding: 32px 28px;
+  cursor: default;
+  position: relative;
+  transition: box-shadow 0.22s;
+}
+.proc-card:first-child { border-radius: var(--r) 0 0 var(--r); }
+.proc-card:last-child  { border-radius: 0 var(--r) var(--r) 0; }
+.proc-card:hover { box-shadow: var(--shadow2); z-index: 1; }
+
+.proc-num {
+  font-size: 12px;
+  font-weight: 800;
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--accent-lt);
+  border: 1px solid var(--accent-bd);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+.proc-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.2px; }
+.proc-card p { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+/* ══════════════════════════════════════════════
+   USE CASES
+══════════════════════════════════════════════ */
+#usecases { background: var(--bg3); border-top: 1px solid var(--border); }
+.uc-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.uc-left { position: sticky; top: 120px; }
+.uc-left h2 { font-size: clamp(26px, 3.2vw, 44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin: 12px 0 14px; }
+.uc-left p { font-size: 15px; color: var(--text2); line-height: 1.8; margin-bottom: 28px; }
+
+.uc-list { display: flex; flex-direction: column; gap: 8px; }
+.uc-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 16px 18px;
+  display: flex;
+  gap: 14px;
+  align-items: start;
+  cursor: default;
+  transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s ease;
+}
+.uc-card:hover { border-color: var(--border2); box-shadow: var(--shadow2); transform: translateX(3px); }
+.uc-icon {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--accent-bd);
+  background: var(--accent-lt);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.uc-icon svg { width: 15px; height: 15px; }
+.uc-text h4 { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.uc-text p { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+/* ══════════════════════════════════════════════
+   TESTIMONIALS
+══════════════════════════════════════════════ */
+#testimonials { background: var(--bg2); border-top: 1px solid var(--border); }
+.testi-featured {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 44px 48px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow2);
+  position: relative;
+  overflow: hidden;
+}
+.testi-featured::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), #06B6D4);
+}
+.testi-featured::after {
+  content: '\201C';
+  position: absolute;
+  top: 12px; right: 44px;
+  font-size: 180px;
+  font-weight: 800;
+  color: var(--border);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.testi-stars { color: #F59E0B; font-size: 13px; letter-spacing: 2px; margin-bottom: 18px; }
+.testi-featured blockquote {
+  font-size: clamp(17px, 2vw, 22px);
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  line-height: 1.55;
+  color: var(--text);
+  margin-bottom: 24px;
+  max-width: 640px;
+  position: relative;
+  z-index: 1;
+}
+.testi-author { display: flex; align-items: center; gap: 12px; position: relative; z-index: 1; }
+.testi-avatar {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #06B6D4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  color: #FFFFFF;
+  flex-shrink: 0;
+}
+.testi-meta strong { display: block; font-size: 14px; font-weight: 600; }
+.testi-meta span { font-size: 12px; color: var(--text2); }
+
+.testi-small-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.testi-small {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 24px 26px;
+  box-shadow: var(--shadow);
+}
+.testi-small blockquote {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text2);
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+
+/* ══════════════════════════════════════════════
+   COURSES
+══════════════════════════════════════════════ */
+#courses { background: var(--bg3); border-top: 1px solid var(--border); }
+.courses-layout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; align-items: start; }
+
+.course-feat {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: border-color 0.22s, box-shadow 0.22s, transform 0.2s ease;
+}
+.course-feat:hover { border-color: var(--border2); box-shadow: var(--shadow3); transform: translateY(-3px); }
+
+.course-thumb {
+  height: 172px;
+  background: linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 100%);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.course-thumb::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.6;
+}
+.thumb-icon { position: relative; z-index: 1; color: var(--text2); }
+.thumb-icon svg { width: 48px; height: 48px; }
+.course-badge {
+  position: absolute;
+  top: 14px; right: 14px;
+  background: var(--accent);
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  z-index: 2;
+}
+.course-body { padding: 26px; }
+.course-body h3 { font-size: 19px; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 8px; }
+.course-body p { font-size: 14px; color: var(--text2); line-height: 1.75; margin-bottom: 18px; }
+.course-meta { display: flex; gap: 16px; font-size: 12px; color: var(--text3); margin-bottom: 20px; }
+.course-meta span { display: flex; align-items: center; gap: 4px; }
+.course-meta svg { width: 12px; height: 12px; }
+
+.courses-side { display: flex; flex-direction: column; gap: 12px; }
+.course-mini {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 18px 20px;
+  display: flex;
+  gap: 14px;
+  align-items: start;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s ease;
+}
+.course-mini:hover { border-color: var(--border2); box-shadow: var(--shadow2); transform: translateY(-2px); }
+.mini-icon-wrap {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text2);
+  flex-shrink: 0;
+}
+.mini-icon-wrap svg { width: 18px; height: 18px; }
+.course-mini h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.course-mini p { font-size: 12px; color: var(--text2); line-height: 1.65; margin-bottom: 10px; }
+.mini-meta { display: flex; gap: 8px; font-size: 11px; color: var(--text3); }
+
+/* ══════════════════════════════════════════════
+   ABOUT
+══════════════════════════════════════════════ */
+#about { background: var(--bg2); border-top: 1px solid var(--border); }
+.about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 72px; align-items: start; }
+.about-text h2 { font-size: clamp(26px, 3.2vw, 44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin: 12px 0 18px; }
+.about-text p { font-size: 15px; color: var(--text2); line-height: 1.85; margin-bottom: 12px; }
+.about-text p strong { color: var(--text); font-weight: 600; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 32px; }
+.stat-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  transition: border-color 0.18s, box-shadow 0.18s;
+  cursor: default;
+}
+.stat-card:hover { border-color: var(--border2); box-shadow: var(--shadow2); }
+.stat-num { font-size: 28px; font-weight: 800; letter-spacing: -1px; color: var(--accent); line-height: 1; }
+.stat-lbl { font-size: 12px; color: var(--text2); margin-top: 4px; }
+
+.founders-col { display: flex; flex-direction: column; gap: 14px; }
+.founder-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 22px;
+  display: flex;
+  gap: 16px;
+  align-items: start;
+  box-shadow: var(--shadow);
+  cursor: default;
+  transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s ease;
+}
+.founder-card:hover { border-color: var(--border2); box-shadow: var(--shadow2); transform: translateX(3px); }
+.f-avatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent) 0%, #06B6D4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: #FFFFFF;
+  flex-shrink: 0;
+}
+.f-info h4 { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+.f-role { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 7px; }
+.f-info p { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+/* ══════════════════════════════════════════════
+   CTA — clean dark block
+══════════════════════════════════════════════ */
+#cta { background: var(--bg3); border-top: 1px solid var(--border); }
+.cta-block {
+  background: var(--dark);
+  border-radius: var(--r-lg);
+  padding: 72px 64px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 64px;
+  align-items: center;
+}
+.cta-text .eyebrow { color: rgba(13,148,136,0.9); margin-bottom: 14px; }
+.cta-text .eyebrow-line { background: var(--accent); }
+.cta-text h2 { font-size: clamp(24px, 3.2vw, 44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 12px; color: #FFFFFF; }
+.cta-text p { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.75; max-width: 400px; }
+.cta-actions { display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; align-items: flex-end; }
+.cta-note { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+/* ══════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════ */
+footer { padding: 52px 0 28px; background: var(--dark); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+.footer-brand .logo { display: inline-block; margin-bottom: 12px; color: #FFFFFF; }
+.footer-brand .logo-dot { color: var(--accent); }
+.footer-brand p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.75; max-width: 240px; }
+.footer-col h5 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul a { font-size: 13px; color: rgba(255,255,255,0.5); transition: color 0.18s; cursor: pointer; }
+.footer-col ul a:hover { color: rgba(255,255,255,0.85); }
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.social-row { display: flex; gap: 8px; }
+.social-btn {
+  width: 32px; height: 32px;
+  border-radius: var(--r-sm);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.45);
+  cursor: pointer;
+  transition: border-color 0.18s, color 0.18s, background 0.18s;
+}
+.social-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.85); }
+.social-btn svg { width: 14px; height: 14px; }
+
+/* ══════════════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none !important; opacity: 1; transform: none; }
+  .prog-fill { transition: none !important; }
+  .btn, .svc-card, .uc-card, .proc-card,
+  .founder-card, .course-mini, .course-feat { transition: none !important; }
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero-grid      { grid-template-columns: 1fr; gap: 48px; }
+  .metrics-panel  { max-width: 480px; }
+  .services-head  { grid-template-columns: 1fr; gap: 12px; }
+  .courses-layout { grid-template-columns: 1fr; }
+  .about-grid     { grid-template-columns: 1fr; gap: 48px; }
+  .cta-block      { grid-template-columns: 1fr; padding: 48px 36px; }
+  .cta-actions    { align-items: flex-start; flex-direction: row; }
+  .proc-grid      { grid-template-columns: 1fr 1fr; gap: 2px; }
+  .proc-card:first-child { border-radius: var(--r) 0 0 0; }
+  .proc-card:last-child  { border-radius: 0 var(--r) var(--r) 0; }
+}
+@media (max-width: 768px) {
+  section { padding: 64px 0; }
+  .container { padding: 0 20px; }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .hero h1 { letter-spacing: -1.8px; }
+  .svc-list         { grid-template-columns: 1fr; }
+  .uc-layout        { grid-template-columns: 1fr; }
+  .uc-left          { position: static; }
+  .testi-small-grid { grid-template-columns: 1fr; }
+  .footer-grid      { grid-template-columns: 1fr 1fr; }
+  .stats-grid       { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .footer-grid  { grid-template-columns: 1fr; }
+  .proc-grid    { grid-template-columns: 1fr; gap: 2px; }
+  .proc-card:first-child { border-radius: var(--r) var(--r) 0 0; }
+  .proc-card:last-child  { border-radius: 0 0 var(--r) var(--r); }
+  .cta-actions  { flex-direction: column; }
+}
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────── -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-row">
+      <a href="#" class="logo">Automate<span class="logo-dot">.</span>AI</a>
+      <ul class="nav-links" role="list">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#usecases">Use Cases</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <a href="#cta" class="btn btn-accent nav-cta">Book a Call</a>
+      <button class="hamburger" aria-label="Open menu" onclick="toggleDrawer()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-drawer" id="drawer">
+  <a href="#services" onclick="closeDrawer()">Services</a>
+  <a href="#usecases" onclick="closeDrawer()">Use Cases</a>
+  <a href="#courses"  onclick="closeDrawer()">Courses</a>
+  <a href="#about"    onclick="closeDrawer()">About</a>
+  <a href="#cta" class="m-cta" onclick="closeDrawer()">Book a Call →</a>
+</div>
+
+<!-- ── HERO ────────────────────────────── -->
+<main>
+<section class="hero" aria-label="Hero">
+  <div class="container">
+    <div class="hero-grid">
+
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <span class="eyebrow"><span class="eyebrow-line"></span>AI Automation Agency</span>
+        </div>
+        <h1>
+          We don't implement AI<br>
+          <em>for the sake of it.</em>
+        </h1>
+        <p class="hero-sub">
+          We fix operational bottlenecks and apply AI where it delivers real ROI.
+          No fluff. No buzzwords. Just measurable results.
+        </p>
+        <div class="hero-actions">
+          <a href="#cta" class="btn btn-accent btn-lg">
+            Book a Free Call
+            <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+          </a>
+          <a href="#services" class="btn btn-outline btn-lg">Our Services</a>
+        </div>
+        <div class="hero-proof">
+          <div class="proof-item">
+            <div class="proof-num">50+</div>
+            <div class="proof-lbl">Companies helped</div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-num">$2M+</div>
+            <div class="proof-lbl">Saved for clients</div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-num">3×</div>
+            <div class="proof-lbl">Average ROI</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="metrics-panel" id="metrics-panel">
+          <div class="panel-bar">
+            <span class="dot dot-r" aria-hidden="true"></span>
+            <span class="dot dot-y" aria-hidden="true"></span>
+            <span class="dot dot-g" aria-hidden="true"></span>
+            <span class="panel-title">Before → After AI</span>
+          </div>
+          <div class="metric-row">
+            <div class="metric-name">Lead qualification time</div>
+            <div class="metric-vals">
+              <span class="mv-before">4 hours</span>
+              <span class="mv-arr">→</span>
+              <span class="mv-after">18 min</span>
+            </div>
+            <div class="prog-track"><div class="prog-fill" data-width="92"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-name">Weekly reporting</div>
+            <div class="metric-vals">
+              <span class="mv-before">Manual</span>
+              <span class="mv-arr">→</span>
+              <span class="mv-after">Automated</span>
+            </div>
+            <div class="prog-track"><div class="prog-fill" data-width="100"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-name">Support ticket resolution</div>
+            <div class="metric-vals">
+              <span class="mv-before">43%</span>
+              <span class="mv-arr">→</span>
+              <span class="mv-after">91%</span>
+            </div>
+            <div class="prog-track"><div class="prog-fill" data-width="91"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-name">Manual data entry / week</div>
+            <div class="metric-vals">
+              <span class="mv-before">24 hrs</span>
+              <span class="mv-arr">→</span>
+              <span class="mv-after">0 hrs</span>
+            </div>
+            <div class="prog-track"><div class="prog-fill" data-width="100"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST ────────────────────────────── -->
+<div class="trust">
+  <div class="container">
+    <div class="trust-row">
+      <span class="trust-lbl">Trusted by teams at</span>
+      <div class="trust-names">
+        <span class="trust-name">TechVentures</span>
+        <span class="trust-name">ScaleForce</span>
+        <span class="trust-name">NovaBuild</span>
+        <span class="trust-name">Meridian Co.</span>
+        <span class="trust-name">PeakOps</span>
+        <span class="trust-name">Stackline</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SERVICES ─────────────────────────── -->
+<section id="services" aria-labelledby="svc-heading">
+  <div class="container">
+    <div class="services-head reveal">
+      <div class="svc-intro">
+        <span class="eyebrow"><span class="eyebrow-line"></span>What We Do</span>
+        <h2 id="svc-heading">AI that moves<br>the <span class="hi">needle.</span></h2>
+      </div>
+      <p class="svc-intro-body">Three focused ways we unlock AI's real business value — no wasted spend, no aimless pilots. Every engagement starts with the problem, not the technology.</p>
+    </div>
+
+    <div class="svc-list">
+      <div class="svc-card reveal">
+        <div class="svc-top">
+          <span class="svc-num">01</span>
+          <div class="svc-arrow" aria-hidden="true"><i data-lucide="arrow-up-right" style="width:13px;height:13px;"></i></div>
+        </div>
+        <div class="svc-icon" aria-hidden="true"><i data-lucide="graduation-cap"></i></div>
+        <h3>Training &amp; Workshops</h3>
+        <p>Practical, hands-on AI training for your whole team — product, ops, marketing, sales, and leadership. We turn AI curiosity into daily execution, fast.</p>
+        <div class="chips">
+          <span class="chip">Prompt Engineering</span>
+          <span class="chip">AI Workflows</span>
+          <span class="chip">Team Upskilling</span>
+          <span class="chip">Custom Curriculum</span>
+        </div>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-top">
+          <span class="svc-num">02</span>
+          <div class="svc-arrow" aria-hidden="true"><i data-lucide="arrow-up-right" style="width:13px;height:13px;"></i></div>
+        </div>
+        <div class="svc-icon" aria-hidden="true"><i data-lucide="map"></i></div>
+        <h3>Consulting &amp; AI Roadmap</h3>
+        <p>We audit your operations, identify high-ROI opportunities, and design a clear AI strategy — so you invest where it actually counts.</p>
+        <div class="chips">
+          <span class="chip">AI Audit</span>
+          <span class="chip">Roadmap Design</span>
+          <span class="chip">ROI Mapping</span>
+          <span class="chip">CAIO as a Service</span>
+        </div>
+      </div>
+
+      <div class="svc-card featured reveal">
+        <div class="svc-top">
+          <span class="svc-num">03</span>
+          <div class="svc-arrow" aria-hidden="true"><i data-lucide="arrow-up-right" style="width:13px;height:13px;"></i></div>
+        </div>
+        <div class="svc-icon" aria-hidden="true"><i data-lucide="zap"></i></div>
+        <div class="feat-badge">Most Requested</div>
+        <h3>Building &amp; Implementing</h3>
+        <p>We don't just advise — we build. Custom AI agents, automations, and integrations that slot into your stack and deliver value from day one.</p>
+        <div class="chips">
+          <span class="chip">AI Agents</span>
+          <span class="chip">Workflow Automation</span>
+          <span class="chip">RAG Systems</span>
+          <span class="chip">Integrations</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ───────────────────────────── -->
+<section id="process">
+  <div class="container">
+    <div class="section-head centered reveal">
+      <span class="eyebrow"><span class="eyebrow-line"></span>How We Work</span>
+      <h2>From bottleneck to <span class="hi">breakthrough.</span></h2>
+      <p>A focused four-step process that gets you from problem to production — no bloat, no delay.</p>
+    </div>
+    <div class="proc-grid reveal">
+      <div class="proc-card">
+        <div class="proc-num">01</div>
+        <h4>Discovery Call</h4>
+        <p>We map your operations and identify where AI can cut friction and unlock revenue.</p>
+      </div>
+      <div class="proc-card">
+        <div class="proc-num">02</div>
+        <h4>Opportunity Audit</h4>
+        <p>We rank use cases by ROI potential and build a prioritized, costed action plan.</p>
+      </div>
+      <div class="proc-card">
+        <div class="proc-num">03</div>
+        <h4>Build &amp; Deploy</h4>
+        <p>We implement the highest-impact solutions — fast, clean, and fully integrated.</p>
+      </div>
+      <div class="proc-card">
+        <div class="proc-num">04</div>
+        <h4>Train &amp; Scale</h4>
+        <p>We transfer ownership to your team and scale whatever works.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── USE CASES ─────────────────────────── -->
+<section id="usecases">
+  <div class="container">
+    <div class="uc-layout">
+      <div class="uc-left reveal">
+        <span class="eyebrow"><span class="eyebrow-line"></span>Use Cases</span>
+        <h2>Real results.<br><span class="hi">Real ROI.</span></h2>
+        <p>Where we've seen AI deliver measurable, lasting business impact across industries.</p>
+        <a href="#cta" class="btn btn-accent">
+          See if we can help
+          <i data-lucide="arrow-right" style="width:15px;height:15px;"></i>
+        </a>
+      </div>
+      <div class="uc-list">
+        <div class="uc-card reveal">
+          <div class="uc-icon" aria-hidden="true"><i data-lucide="bar-chart-2"></i></div>
+          <div class="uc-text">
+            <h4>Sales Pipeline Automation</h4>
+            <p>Auto-qualify leads, draft follow-ups, and update CRM — freeing reps to close, not type.</p>
+          </div>
+        </div>
+        <div class="uc-card reveal">
+          <div class="uc-icon" aria-hidden="true"><i data-lucide="message-circle"></i></div>
+          <div class="uc-text">
+            <h4>Customer Support AI</h4>
+            <p>AI agents handling tier-1 tickets 24/7, escalating only what truly needs a human.</p>
+          </div>
+        </div>
+        <div class="uc-card reveal">
+          <div class="uc-icon" aria-hidden="true"><i data-lucide="pen-tool"></i></div>
+          <div class="uc-text">
+            <h4>Content Operations</h4>
+            <p>Automate briefs, first drafts, SEO optimization, and social repurposing at scale.</p>
+          </div>
+        </div>
+        <div class="uc-card reveal">
+          <div class="uc-icon" aria-hidden="true"><i data-lucide="file-text"></i></div>
+          <div class="uc-text">
+            <h4>Operations &amp; Reporting</h4>
+            <p>Replace manual weekly reports with AI-generated dashboards and narrative summaries.</p>
+          </div>
+        </div>
+        <div class="uc-card reveal">
+          <div class="uc-icon" aria-hidden="true"><i data-lucide="database"></i></div>
+          <div class="uc-text">
+            <h4>Knowledge Management</h4>
+            <p>Internal AI assistants that surface the right docs, policies, and answers instantly.</p>
+          </div>
+        </div>
+        <div class="uc-card reveal">
+          <div class="uc-icon" aria-hidden="true"><i data-lucide="user-check"></i></div>
+          <div class="uc-text">
+            <h4>HR &amp; Onboarding</h4>
+            <p>Automate candidate screening, interview prep, and onboarding workflows end-to-end.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ──────────────────────── -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="eyebrow-line"></span>Client Feedback</span>
+      <h2>What our clients <span class="hi">say.</span></h2>
+    </div>
+    <div class="testi-featured reveal">
+      <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+      <blockquote>"They didn't just implement AI — they identified a bottleneck I didn't even know I had and eliminated it. We saved 15 hours a week within the first month."</blockquote>
+      <div class="testi-author">
+        <div class="testi-avatar" aria-hidden="true">DM</div>
+        <div class="testi-meta">
+          <strong>Dana Miller</strong>
+          <span>COO, TechVentures</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-small-grid">
+      <div class="testi-small reveal">
+        <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+        <blockquote>"The AI roadmap gave our leadership team total clarity on where to invest. ROI was visible within 6 weeks of going live."</blockquote>
+        <div class="testi-author">
+          <div class="testi-avatar" style="width:36px;height:36px;font-size:12px;" aria-hidden="true">AT</div>
+          <div class="testi-meta"><strong>Alex Torres</strong><span>CEO, ScaleForce</span></div>
+        </div>
+      </div>
+      <div class="testi-small reveal">
+        <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+        <blockquote>"The workshop completely shifted how our team thinks about AI. Practical, no-nonsense, and immediately applicable. Highly recommend."</blockquote>
+        <div class="testi-author">
+          <div class="testi-avatar" style="width:36px;height:36px;font-size:12px;" aria-hidden="true">SR</div>
+          <div class="testi-meta"><strong>Sara Reeves</strong><span>Head of Product, NovaBuild</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── COURSES ───────────────────────────── -->
+<section id="courses">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="eyebrow-line"></span>Courses</span>
+      <h2>Learn at your <span class="hi">own pace.</span></h2>
+      <p>Self-paced AI courses built for business teams — no coding required.</p>
+    </div>
+    <div class="courses-layout">
+      <div class="course-feat reveal">
+        <div class="course-thumb">
+          <div class="thumb-icon" aria-hidden="true"><i data-lucide="cpu" style="width:48px;height:48px;"></i></div>
+          <span class="course-badge">Bestseller</span>
+        </div>
+        <div class="course-body">
+          <h3>AI Foundations for Business Teams</h3>
+          <p>Understand AI's business potential and start using it confidently from day one. No developer background required.</p>
+          <div class="course-meta">
+            <span><i data-lucide="clock"></i>4 hours</span>
+            <span><i data-lucide="layers"></i>12 lessons</span>
+            <span><i data-lucide="target"></i>Beginner</span>
+          </div>
+          <a href="#cta" class="btn btn-accent" style="width:100%;">
+            Enroll Now <i data-lucide="arrow-right" style="width:15px;height:15px;"></i>
+          </a>
+        </div>
+      </div>
+      <div class="courses-side">
+        <div class="course-mini reveal">
+          <div class="mini-icon-wrap" aria-hidden="true"><i data-lucide="zap"></i></div>
+          <div>
+            <h4>Build Your First AI Automation</h4>
+            <p>Design and deploy your first AI-powered workflow using no-code tools.</p>
+            <div class="mini-meta"><span>6 hrs</span><span>·</span><span>18 lessons</span><span>·</span><span>Intermediate</span></div>
+            <a href="#cta" class="btn btn-outline" style="margin-top:12px;font-size:13px;padding:8px 16px;">Enroll Now</a>
+          </div>
+        </div>
+        <div class="course-mini reveal">
+          <div class="mini-icon-wrap" aria-hidden="true"><i data-lucide="compass"></i></div>
+          <div>
+            <h4>Strategic AI Roadmap for Leaders</h4>
+            <p>Evaluate and execute AI initiatives that move the business forward.</p>
+            <div class="mini-meta"><span>3 hrs</span><span>·</span><span>9 lessons</span><span>·</span><span>Advanced</span></div>
+            <a href="#cta" class="btn btn-outline" style="margin-top:12px;font-size:13px;padding:8px 16px;">Enroll Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ─────────────────────────────── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <span class="eyebrow"><span class="eyebrow-line"></span>Who Are We</span>
+        <h2>Built by practitioners,<br><span class="hi">not theorists.</span></h2>
+        <p>We're <strong>Moshe and Nadav</strong> — two builders who got tired of watching businesses implement AI the wrong way: expensive, aimless, and with nothing to show for it.</p>
+        <p>So we built the agency we wished existed: one that <strong>starts with the problem, not the technology.</strong> We've helped companies across industries find and fix the exact bottlenecks where AI generates real, measurable returns.</p>
+        <p>No slide decks. No 12-week transformation programmes. Just clear thinking, fast execution, and results you can point to.</p>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-num">50+</div><div class="stat-lbl">Companies helped</div></div>
+          <div class="stat-card"><div class="stat-num">$2M+</div><div class="stat-lbl">Saved for clients</div></div>
+          <div class="stat-card"><div class="stat-num">100+</div><div class="stat-lbl">Workflows automated</div></div>
+          <div class="stat-card"><div class="stat-num">3×</div><div class="stat-lbl">Average ROI</div></div>
+        </div>
+      </div>
+      <div class="founders-col reveal">
+        <div class="founder-card">
+          <div class="f-avatar" aria-hidden="true">M</div>
+          <div class="f-info">
+            <h4>Moshe</h4>
+            <div class="f-role">Co-Founder · AI Strategist</div>
+            <p>Expert in AI strategy and roadmap design. Helps leadership teams build clarity around AI investments that actually deliver.</p>
+          </div>
+        </div>
+        <div class="founder-card">
+          <div class="f-avatar" aria-hidden="true">N</div>
+          <div class="f-info">
+            <h4>Nadav</h4>
+            <div class="f-role">Co-Founder · AI Engineer</div>
+            <p>Builds the automations, agents, and systems that transform strategy into running software with measurable outcomes from day one.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ──────────────────────────────── -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-block reveal">
+      <div class="cta-text">
+        <span class="eyebrow"><span class="eyebrow-line"></span>Let's Talk</span>
+        <h2>Ready to find your<br>real bottleneck?</h2>
+        <p>Book a free 30-minute discovery call. We'll identify exactly where AI can move the needle — no commitment, no fluff.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-lg">
+          Book a Free Call
+          <i data-lucide="calendar" style="width:16px;height:16px;"></i>
+        </a>
+        <a href="mailto:hello@youragency.ai" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,0.2);color:#fff;">Send an Email</a>
+        <span class="cta-note">Free · No commitment · 30 min</span>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ── FOOTER ────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">Automate<span class="logo-dot">.</span>AI</a>
+        <p>We fix operational bottlenecks and apply AI where it delivers real ROI. No fluff — just results.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">Training &amp; Workshops</a></li>
+          <li><a href="#services">AI Consulting</a></li>
+          <li><a href="#services">Build &amp; Implement</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Resources</h5>
+        <ul>
+          <li><a href="#usecases">Use Cases</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="mailto:hello@youragency.ai">Contact</a></li>
+          <li><a href="#cta">Book a Call</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Automate.AI · All rights reserved</span>
+      <div class="social-row">
+        <a href="#" class="social-btn" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+        <a href="#" class="social-btn" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+        <a href="#" class="social-btn" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('stuck', window.scrollY > 24);
+  }, { passive: true });
+
+  const drawer = document.getElementById('drawer');
+  function toggleDrawer() { drawer.classList.toggle('open'); }
+  function closeDrawer()  { drawer.classList.remove('open'); }
+  document.addEventListener('click', e => {
+    if (drawer.classList.contains('open') &&
+        !drawer.contains(e.target) &&
+        !e.target.closest('.hamburger')) closeDrawer();
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); closeDrawer(); }
+    });
+  });
+
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const siblings = [...entry.target.parentElement.querySelectorAll('.reveal:not(.in)')];
+      const idx = siblings.indexOf(entry.target);
+      setTimeout(() => entry.target.classList.add('in'), Math.max(0, idx) * 80);
+      revealObs.unobserve(entry.target);
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  const panelObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      setTimeout(() => {
+        entry.target.querySelectorAll('.prog-fill').forEach((bar, i) => {
+          setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, i * 220);
+        });
+      }, 300);
+      panelObs.unobserve(entry.target);
+    });
+  }, { threshold: 0.4 });
+  const panel = document.getElementById('metrics-panel');
+  if (panel) panelObs.observe(panel);
+</script>
+</body>
+</html>
