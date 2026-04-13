@@ -6,11 +6,10 @@
   <title>Automate.AI — Real ROI. No Fluff.</title>
 
   <!--
-    Design System (ui-ux-pro-max):
-    Style   → Trust & Authority + Swiss Modernism (clean, professional, minimal)
-    Font    → Plus Jakarta Sans (B2B SaaS, friendly + professional, single family)
-    Colors  → bg #FAFAFA · text #0F172A · accent #0D9488 (teal-600) · border #E2E8F0
-    Pattern → Conversion-Optimised: proof above fold, CTA repeated, dark footer
+    Structure: faithful to the provided template
+    (dark overlay hero · floating cards + connector lines · dark showcase · light contact)
+    Content: our copy, sections, metrics panel, founders, courses, etc.
+    Font: Plus Jakarta Sans · Accent: turquoise #08BDB0
   -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,175 +17,93 @@
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
   <style>
-/* ══════════════════════════════════════════════
-   TOKENS — Clean Light
-══════════════════════════════════════════════ */
-:root {
-  /* Backgrounds */
-  --bg:     #FAFAFA;
-  --bg2:    #F1F5F9;
-  --bg3:    #FFFFFF;
-  --dark:   #0F172A;
-
-  /* Accent — teal-600, professional & distinctive */
-  --accent:     #0D9488;
-  --accent-lt:  rgba(13,148,136,0.08);
-  --accent-bd:  rgba(13,148,136,0.22);
-  --accent-dk:  #0F766E;
-
-  /* Text */
-  --text:    #0F172A;
-  --text2:   #64748B;
-  --text3:   #94A3B8;
-
-  /* Borders & shadows */
-  --border:  #E2E8F0;
-  --border2: #CBD5E1;
-  --shadow:  0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow2: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
-  --shadow3: 0 12px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
-
-  /* Radii */
-  --r:    12px;
-  --r-sm: 8px;
-  --r-lg: 16px;
-}
+/* ── clearfix (template) ── */
+.cf::before,.cf::after{content:"";display:table}.cf::after{clear:both}
 
 /* ══════════════════════════════════════════════
-   RESET
+   GLOBAL (from template)
 ══════════════════════════════════════════════ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+*,*::after,*::before { box-sizing: border-box; }
 body {
+  margin: 0;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.65;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
-img, svg { display: block; }
-a { color: inherit; text-decoration: none; }
+body p { margin: 0; }
+body a { text-decoration: none; }
 
-/* ══════════════════════════════════════════════
-   LAYOUT
-══════════════════════════════════════════════ */
-.container { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
-section { padding: 96px 0; }
+.wrapper {
+  width: 1160px;
+  max-width: 92%;
+  margin: 0 auto;
+}
 
-/* ══════════════════════════════════════════════
-   TYPOGRAPHY
-══════════════════════════════════════════════ */
-.eyebrow {
+/* ── Buttons (template pill shape) ── */
+.button {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-.eyebrow-line {
-  display: inline-block;
-  width: 18px; height: 2px;
-  background: var(--accent);
-  border-radius: 2px;
-  flex-shrink: 0;
-}
-.hi { color: var(--accent); }
-
-.section-head { margin-bottom: 56px; }
-.section-head .eyebrow { margin-bottom: 14px; }
-.section-head h2 {
-  font-size: clamp(28px, 3.5vw, 48px);
-  font-weight: 800;
-  letter-spacing: -1.2px;
-  line-height: 1.12;
-  margin-bottom: 12px;
-  color: var(--text);
-}
-.section-head p { font-size: 16px; color: var(--text2); line-height: 1.75; max-width: 480px; }
-.section-head.centered { text-align: center; }
-.section-head.centered p { margin: 0 auto; }
-
-/* ══════════════════════════════════════════════
-   BUTTONS
-══════════════════════════════════════════════ */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   gap: 7px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
   border: none;
-  border-radius: var(--r-sm);
-  padding: 11px 20px;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+  outline: none;
+  border-radius: 2rem;
+  padding: 0.65rem 2.4rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
   white-space: nowrap;
 }
-.btn:active { transform: scale(0.97) !important; }
-.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-
-.btn-accent { background: var(--accent); color: #FFFFFF; }
-.btn-accent:hover { background: var(--accent-dk); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(13,148,136,0.25); }
-
-.btn-outline {
-  background: transparent;
-  color: var(--text);
-  border: 1px solid var(--border2);
-}
-.btn-outline:hover { border-color: var(--text2); background: var(--bg2); transform: translateY(-1px); }
-
-.btn-dark { background: var(--dark); color: #FFFFFF; }
-.btn-dark:hover { background: #1E293B; transform: translateY(-1px); box-shadow: var(--shadow2); }
-
-.btn-lg { padding: 14px 26px; font-size: 15px; border-radius: var(--r); }
+.button:active { transform: scale(0.97); }
+.button:focus-visible { outline: 2px solid #08BDB0; outline-offset: 3px; }
+.button-highlight { background: #08BDB0; color: #FFFFFF; }
+.button-highlight:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(8,189,176,0.30); }
+.button-secondary { background: rgba(0,0,0,0.28); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.18); }
+.button-secondary:hover { background: rgba(0,0,0,0.40); transform: translateY(-1px); }
+.button-outline { background: transparent; color: #334155; border: 2px solid #CBD5E1; }
+.button-outline:hover { border-color: #08BDB0; color: #08BDB0; }
+.button-small { padding: 0.3rem 1.4rem; font-size: 0.8rem; }
+.button-large { padding: 1rem 3.8rem; font-size: 1rem; }
 
 /* ══════════════════════════════════════════════
-   NAV
+   NAV (transparent · white text · teal CTA)
 ══════════════════════════════════════════════ */
 #nav {
   position: fixed;
   inset: 0 0 auto 0;
-  z-index: 100;
+  z-index: 200;
   padding: 18px 0;
-  transition: padding 0.3s, background 0.3s, border-color 0.3s, box-shadow 0.3s;
+  transition: background 0.3s, padding 0.3s, border-color 0.3s;
   border-bottom: 1px solid transparent;
-  background: transparent;
 }
 #nav.stuck {
-  background: rgba(250,250,250,0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(8,14,28,0.90);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   padding: 12px 0;
-  border-bottom-color: var(--border);
-  box-shadow: var(--shadow);
+  border-bottom-color: rgba(255,255,255,0.07);
 }
 .nav-row { display: flex; align-items: center; }
 .logo {
-  font-size: 17px;
+  font-size: 1.15rem;
   font-weight: 800;
-  color: var(--text);
-  letter-spacing: -0.3px;
+  color: #FFFFFF;
+  letter-spacing: -0.2px;
   flex-shrink: 0;
 }
-.logo-dot { color: var(--accent); }
-.nav-links { display: flex; gap: 28px; list-style: none; margin: 0 auto 0 40px; }
+.logo-dot { color: #08BDB0; }
+.nav-links { display: flex; gap: 26px; list-style: none; margin: 0 auto 0 36px; }
 .nav-links a {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text2);
-  transition: color 0.18s;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.68);
+  transition: color 0.2s;
   cursor: pointer;
 }
-.nav-links a:hover { color: var(--text); }
-.nav-links a:focus-visible { outline: 2px solid var(--accent); border-radius: 4px; }
-.nav-cta { margin-left: 20px; }
-
+.nav-links a:hover { color: #FFFFFF; }
+.nav-cta { margin-left: 16px; }
 .hamburger {
   display: none;
   flex-direction: column;
@@ -197,94 +114,163 @@ section { padding: 96px 0; }
   background: none;
   border: none;
 }
-.hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.25s; }
+.hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.25s; }
 
-/* ══════════════════════════════════════════════
-   MOBILE DRAWER
-══════════════════════════════════════════════ */
+/* ── Mobile drawer ── */
 .mobile-drawer {
   display: none;
   position: fixed;
-  top: 57px; left: 0; right: 0;
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-  padding: 16px 32px 24px;
-  z-index: 99;
+  top: 55px; left: 0; right: 0;
+  background: rgba(8,14,28,0.97);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 14px 28px 22px;
+  z-index: 199;
   flex-direction: column;
 }
 .mobile-drawer.open { display: flex; }
 .mobile-drawer a {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--text2);
-  padding: 13px 0;
-  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.62);
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
   transition: color 0.18s;
   cursor: pointer;
 }
-.mobile-drawer a:hover { color: var(--text); }
-.mobile-drawer .m-cta { color: var(--accent); border-bottom: none; padding-top: 16px; font-weight: 600; }
+.mobile-drawer a:hover { color: #fff; }
+.mobile-drawer .m-cta { color: #08BDB0; border-bottom: none; padding-top: 16px; }
 
 /* ══════════════════════════════════════════════
-   HERO
+   BANNER (template #banner — dark overlay hero)
 ══════════════════════════════════════════════ */
-.hero {
+#banner {
+  position: relative;
+  z-index: 1;
+  /* dark gradient background — replace with a background-image for a photo */
+  background: linear-gradient(135deg, #0B1525 0%, #0F1E35 50%, #091220 100%);
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 128px 0 96px;
-  background: var(--bg3);
-  border-bottom: 1px solid var(--border);
+  padding-bottom: 80px; /* room for floating cards */
 }
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 72px;
+/* Subtle grid texture */
+#banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(8,189,176,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8,189,176,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, black, transparent 75%);
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, black, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+/* Dark overlay — template's &:after */
+#banner::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: rgba(0,0,0,0.18);
+}
+
+#banner header {
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Banner content (centered — template style) ── */
+.banner-content {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
+  padding: 130px 0 60px;
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+  margin: 0 auto;
 }
-.hero-eyebrow { margin-bottom: 24px; }
-.hero h1 {
-  font-size: clamp(38px, 5.2vw, 70px);
+
+.banner-content .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #08BDB0;
+  margin-bottom: 22px;
+}
+.eyebrow-line {
+  display: inline-block;
+  width: 18px; height: 2px;
+  background: #08BDB0;
+  border-radius: 2px;
+}
+
+.banner-content h1.title {
+  font-size: clamp(38px, 5.5vw, 72px);
   font-weight: 800;
   letter-spacing: -2.5px;
   line-height: 1.06;
-  margin-bottom: 22px;
-  color: var(--text);
+  color: #FFFFFF;
+  margin: 0 0 20px 0;
 }
-.hero h1 em { font-style: italic; color: var(--text2); font-weight: 600; }
-.hero-sub { font-size: 17px; color: var(--text2); line-height: 1.8; max-width: 440px; margin-bottom: 36px; }
-.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
+.banner-content h1 em { font-style: italic; color: rgba(255,255,255,0.40); font-weight: 600; }
 
-/* Proof stats */
-.hero-proof { display: flex; gap: 32px; flex-wrap: wrap; padding-top: 28px; border-top: 1px solid var(--border); }
+.banner-content h2.sub-title {
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.55);
+  margin: 0 auto 32px;
+  max-width: 520px;
+}
+
+.button-wrapper { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; justify-content: center; }
+
+/* Proof stats (centered below CTAs) */
+.banner-proof {
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  justify-content: center;
+}
 .proof-num {
-  font-size: 22px;
+  font-size: 1.5rem;
   font-weight: 800;
-  color: var(--text);
+  color: #FFFFFF;
   letter-spacing: -0.5px;
   line-height: 1;
 }
-.proof-lbl { font-size: 12px; color: var(--text3); margin-top: 3px; font-weight: 400; }
+.proof-lbl { font-size: 0.72rem; color: rgba(255,255,255,0.35); margin-top: 4px; }
 
-/* ── Metrics Panel ── */
+/* ── Metrics Panel (inside #about section — dark card on light bg) ── */
 .metrics-panel {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
+  background: #0F1E35;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: var(--shadow3);
+  box-shadow: 0 16px 48px rgba(11,21,37,0.28);
 }
 .metrics-panel::before {
   content: '';
   display: block;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), #06B6D4);
+  height: 2px;
+  background: linear-gradient(90deg, #08BDB0, #06B6D4);
 }
 .panel-bar {
-  padding: 11px 18px;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg2);
+  padding: 10px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  background: rgba(0,0,0,0.20);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -294,555 +280,846 @@ section { padding: 96px 0; }
 .dot-y { background: #FEBC2E; }
 .dot-g { background: #28C840; }
 .panel-title {
-  font-size: 11px;
+  font-size: 0.67rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--text2);
+  color: rgba(255,255,255,0.30);
   margin-left: 8px;
 }
-.metric-row { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+.metric-row { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .metric-row:last-child { border-bottom: none; }
 .metric-name {
-  font-size: 11px;
+  font-size: 0.67rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text3);
+  color: rgba(255,255,255,0.25);
   margin-bottom: 7px;
 }
 .metric-vals {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 15px;
+  font-size: 0.9rem;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 7px;
+  color: #fff;
 }
-.mv-before { color: var(--text3); text-decoration: line-through; }
-.mv-arr { color: var(--text3); font-size: 12px; }
-.mv-after { color: var(--accent); }
-.prog-track { height: 3px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.mv-before { color: rgba(255,255,255,0.22); text-decoration: line-through; }
+.mv-arr { color: rgba(255,255,255,0.22); font-size: 0.75rem; }
+.mv-after { color: #08BDB0; }
+.prog-track { height: 2px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
 .prog-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--accent), #06B6D4);
-  border-radius: 3px;
+  background: linear-gradient(90deg, #08BDB0, #06B6D4);
+  border-radius: 2px;
   width: 0;
-  transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 1.4s cubic-bezier(0.4,0,0.2,1);
 }
 
 /* ══════════════════════════════════════════════
    TRUST STRIP
 ══════════════════════════════════════════════ */
 .trust {
-  padding: 24px 0;
-  background: var(--bg2);
-  border-bottom: 1px solid var(--border);
+  background: rgba(0,0,0,0.22);
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 20px 0;
+  position: relative;
+  z-index: 1;
 }
-.trust-row { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; justify-content: center; }
-.trust-lbl { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); white-space: nowrap; }
-.trust-names { display: flex; gap: 36px; flex-wrap: wrap; justify-content: center; }
-.trust-name {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text3);
-  transition: color 0.18s;
-  cursor: default;
-  letter-spacing: 0.02em;
-}
-.trust-name:hover { color: var(--text2); }
+.trust-row { display: flex; align-items: center; gap: 36px; flex-wrap: wrap; justify-content: center; }
+.trust-lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.22); white-space: nowrap; }
+.trust-names { display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; }
+.trust-name { font-size: 0.82rem; font-weight: 700; color: rgba(255,255,255,0.18); cursor: default; transition: color 0.2s; }
+.trust-name:hover { color: rgba(255,255,255,0.45); }
 
 /* ══════════════════════════════════════════════
-   SERVICES
+   SERVICES (template #services — floating cards)
 ══════════════════════════════════════════════ */
-#services { background: var(--bg); }
-.services-head {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 56px;
-  align-items: end;
-  margin-bottom: 40px;
+#services {
+  background: #EEF1F5;
+  padding: 0 0 80px 0;
+  position: relative;
+  z-index: 1;
 }
-.svc-intro h2 { font-size: clamp(28px, 3.8vw, 48px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-top: 12px; }
-.svc-intro-body { font-size: 15px; color: var(--text2); line-height: 1.8; }
 
-.svc-list { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+/* Section intro — appears below floating cards */
+.services-intro {
+  text-align: center;
+  padding: 52px 0 40px;
+}
+.services-intro .eyebrow-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #08BDB0;
+  margin-bottom: 12px;
+}
+.services-intro h2 {
+  font-size: clamp(24px, 3.2vw, 40px);
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  color: #0F172A;
+  margin: 0 0 10px 0;
+  line-height: 1.1;
+}
+.services-intro h2 span { color: #08BDB0; }
+.services-intro p { font-size: 0.94rem; color: #64748B; max-width: 480px; margin: 0 auto; line-height: 1.75; }
 
+/* Cards grid — floats UP over banner (template margin: -5rem) */
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: -5rem;  /* template signature: cards overlap section above */
+  position: relative;
+  z-index: 2;
+  padding-bottom: 50px; /* space for connector lines */
+}
+
+/* Horizontal connector (template #services::before) */
+.svc-grid::before {
+  content: '';
+  position: absolute;
+  left: calc(100% / 6);
+  right: calc(100% / 6);
+  bottom: 0;
+  border-top: 2px solid #BDBDBD;
+  pointer-events: none;
+}
+
+/* Service card (template .service) */
 .svc-card {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 28px;
+  background: #FFFFFF;
+  border-radius: 6px;
+  padding: 2.8rem 2rem 2rem;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 0 57px 0 rgba(47,79,79,0.18);
+  transition: transform 0.22s ease, box-shadow 0.22s;
+  cursor: default;
   display: flex;
   flex-direction: column;
-  cursor: default;
-  box-shadow: var(--shadow);
-  transition: border-color 0.22s, box-shadow 0.22s, transform 0.2s ease;
+  align-items: center;
 }
-.svc-card:hover { border-color: var(--border2); box-shadow: var(--shadow3); transform: translateY(-3px); }
-.svc-card.featured { border-color: var(--accent-bd); background: rgba(13,148,136,0.02); }
-.svc-card.featured:hover { border-color: var(--accent); box-shadow: 0 12px 40px rgba(13,148,136,0.12); }
+.svc-card:hover { transform: translateY(-5px); box-shadow: 0 16px 64px rgba(47,79,79,0.22); }
 
-.svc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-.svc-num {
-  font-size: 11px;
+/* Vertical connector from each card bottom (template .service::after) */
+.svc-card::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -50px;
+  height: 50px;
+  border-left: 2px solid #BDBDBD;
+}
+
+/* Middle card gets longer connector (template .middle::after) */
+.svc-card:nth-child(2)::after {
+  bottom: -112px;
+  height: 112px;
+}
+
+.svc-icon-wrap {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  background: rgba(8,189,176,0.10);
+  border: 1px solid rgba(8,189,176,0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #08BDB0;
+  margin: 0 auto 18px;
+}
+.svc-icon-wrap svg { width: 22px; height: 22px; }
+
+.svc-num-badge {
+  position: absolute;
+  top: 18px; left: 20px;
+  font-size: 0.68rem;
   font-weight: 700;
-  color: var(--text3);
+  color: #94A3B8;
   letter-spacing: 0.1em;
 }
-.svc-card.featured .svc-num { color: var(--accent); }
-.svc-arrow {
-  width: 30px; height: 30px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text3);
-  cursor: pointer;
-  transition: border-color 0.18s, color 0.18s;
-}
-.svc-card:hover .svc-arrow { border-color: var(--border2); color: var(--text2); }
-.svc-card.featured .svc-arrow { border-color: var(--accent-bd); color: var(--accent); }
+.svc-card:nth-child(2) .svc-num-badge { color: #08BDB0; }
 
-.svc-icon {
-  width: 42px; height: 42px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--bg2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text2);
-  margin-bottom: 16px;
+.svc-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #334155;
+  letter-spacing: -0.2px;
+  margin: 0 0 10px 0;
 }
-.svc-icon svg { width: 18px; height: 18px; }
-.svc-card.featured .svc-icon { background: var(--accent-lt); border-color: var(--accent-bd); color: var(--accent); }
-
+.svc-card > p {
+  font-size: 0.84rem;
+  color: #64748B;
+  line-height: 1.7;
+  margin: 0 0 22px 0;
+  flex: 1;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; margin-bottom: 22px; }
+.chip {
+  padding: 2px 10px;
+  border-radius: 2rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  color: #64748B;
+}
+.svc-card:nth-child(2) .chip { background: rgba(8,189,176,0.08); border-color: rgba(8,189,176,0.22); color: #0D9488; }
 .feat-badge {
   display: inline-block;
-  font-size: 10px;
+  font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--accent);
-  background: var(--accent-lt);
-  border: 1px solid var(--accent-bd);
-  padding: 2px 8px;
-  border-radius: 4px;
+  color: #08BDB0;
+  background: rgba(8,189,176,0.08);
+  border: 1px solid rgba(8,189,176,0.22);
+  padding: 2px 9px;
+  border-radius: 2rem;
   margin-bottom: 8px;
 }
-.svc-card h3 { font-size: 17px; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 8px; }
-.svc-card p { font-size: 13px; color: var(--text2); line-height: 1.75; margin-bottom: 20px; flex: 1; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip {
-  padding: 3px 9px;
-  border-radius: 5px;
-  font-size: 11px;
-  font-weight: 500;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  color: var(--text2);
-}
-.svc-card.featured .chip { background: var(--accent-lt); border-color: var(--accent-bd); color: var(--accent); }
 
 /* ══════════════════════════════════════════════
    PROCESS
 ══════════════════════════════════════════════ */
-#process { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.proc-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; }
-
-.proc-card {
-  background: var(--bg3);
-  padding: 32px 28px;
-  cursor: default;
-  position: relative;
-  transition: box-shadow 0.22s;
+#process {
+  background: #FFFFFF;
+  padding: 80px 0;
+  border-top: 1px solid #E8ECF0;
 }
-.proc-card:first-child { border-radius: var(--r) 0 0 var(--r); }
-.proc-card:last-child  { border-radius: 0 var(--r) var(--r) 0; }
-.proc-card:hover { box-shadow: var(--shadow2); z-index: 1; }
-
-.proc-num {
-  font-size: 12px;
+.section-head { margin-bottom: 52px; }
+.section-head .eyebrow-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #08BDB0;
+  margin-bottom: 12px;
+}
+.section-head h2 {
+  font-size: clamp(24px, 3.2vw, 40px);
   font-weight: 800;
-  width: 36px; height: 36px;
-  border-radius: 8px;
-  background: var(--accent-lt);
-  border: 1px solid var(--accent-bd);
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
-  letter-spacing: 0.05em;
+  letter-spacing: -1.2px;
+  color: #0F172A;
+  margin: 0 0 10px 0;
+  line-height: 1.1;
 }
-.proc-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.2px; }
-.proc-card p { font-size: 13px; color: var(--text2); line-height: 1.7; }
+.section-head h2 span { color: #08BDB0; }
+.section-head p { font-size: 0.94rem; color: #64748B; line-height: 1.75; max-width: 480px; }
+.section-head.centered { text-align: center; }
+.section-head.centered p { margin: 0 auto; }
 
-/* ══════════════════════════════════════════════
-   USE CASES
-══════════════════════════════════════════════ */
-#usecases { background: var(--bg3); border-top: 1px solid var(--border); }
-.uc-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
-.uc-left { position: sticky; top: 120px; }
-.uc-left h2 { font-size: clamp(26px, 3.2vw, 44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin: 12px 0 14px; }
-.uc-left p { font-size: 15px; color: var(--text2); line-height: 1.8; margin-bottom: 28px; }
-
-.uc-list { display: flex; flex-direction: column; gap: 8px; }
-.uc-card {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 16px 18px;
-  display: flex;
-  gap: 14px;
-  align-items: start;
-  cursor: default;
-  transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s ease;
-}
-.uc-card:hover { border-color: var(--border2); box-shadow: var(--shadow2); transform: translateX(3px); }
-.uc-icon {
-  width: 34px; height: 34px;
-  border-radius: 8px;
-  border: 1px solid var(--accent-bd);
-  background: var(--accent-lt);
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.uc-icon svg { width: 15px; height: 15px; }
-.uc-text h4 { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
-.uc-text p { font-size: 13px; color: var(--text2); line-height: 1.65; }
-
-/* ══════════════════════════════════════════════
-   TESTIMONIALS
-══════════════════════════════════════════════ */
-#testimonials { background: var(--bg2); border-top: 1px solid var(--border); }
-.testi-featured {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 44px 48px;
-  margin-bottom: 14px;
-  box-shadow: var(--shadow2);
+.proc-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 20px;
   position: relative;
-  overflow: hidden;
 }
-.testi-featured::before {
+/* Timeline horizontal line */
+.proc-grid::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), #06B6D4);
-}
-.testi-featured::after {
-  content: '\201C';
-  position: absolute;
-  top: 12px; right: 44px;
-  font-size: 180px;
-  font-weight: 800;
-  color: var(--border);
-  line-height: 1;
+  top: 17px;
+  left: calc(100%/8);
+  right: calc(100%/8);
+  height: 2px;
+  background: #E2E8F0;
   pointer-events: none;
-  user-select: none;
 }
-.testi-stars { color: #F59E0B; font-size: 13px; letter-spacing: 2px; margin-bottom: 18px; }
-.testi-featured blockquote {
-  font-size: clamp(17px, 2vw, 22px);
-  font-weight: 600;
-  letter-spacing: -0.2px;
-  line-height: 1.55;
-  color: var(--text);
-  margin-bottom: 24px;
-  max-width: 640px;
+.proc-card { padding: 0 12px 24px; position: relative; }
+.proc-num {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2px solid #08BDB0;
+  color: #08BDB0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  letter-spacing: 0.04em;
+  box-shadow: 0 0 0 4px #FFFFFF;
   position: relative;
   z-index: 1;
 }
-.testi-author { display: flex; align-items: center; gap: 12px; position: relative; z-index: 1; }
-.testi-avatar {
-  width: 42px; height: 42px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), #06B6D4);
+.proc-card h4 { font-size: 0.94rem; font-weight: 700; color: #0F172A; margin-bottom: 7px; }
+.proc-card p { font-size: 0.82rem; color: #64748B; line-height: 1.7; }
+
+/* ══════════════════════════════════════════════
+   USE CASES (light grey)
+══════════════════════════════════════════════ */
+#usecases {
+  background: #EEF1F5;
+  padding: 80px 0;
+  border-top: 1px solid #E2E8F0;
+}
+.uc-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.uc-left { position: sticky; top: 100px; }
+.uc-left h2 { font-size: clamp(22px, 3vw, 38px); font-weight: 800; letter-spacing: -1.2px; line-height: 1.1; color: #0F172A; margin: 10px 0 12px; }
+.uc-left h2 span { color: #08BDB0; }
+.uc-left p { font-size: 0.94rem; color: #64748B; line-height: 1.8; margin-bottom: 26px; }
+.uc-list { display: flex; flex-direction: column; gap: 8px; }
+.uc-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 14px 18px;
+  display: flex;
+  gap: 13px;
+  align-items: start;
+  cursor: default;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.uc-card:hover { border-color: rgba(8,189,176,0.35); box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateX(3px); }
+.uc-icon {
+  width: 32px; height: 32px;
+  border-radius: 7px;
+  border: 1px solid rgba(8,189,176,0.22);
+  background: rgba(8,189,176,0.08);
+  color: #08BDB0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
-  font-weight: 800;
-  color: #FFFFFF;
   flex-shrink: 0;
 }
-.testi-meta strong { display: block; font-size: 14px; font-weight: 600; }
-.testi-meta span { font-size: 12px; color: var(--text2); }
+.uc-icon svg { width: 14px; height: 14px; }
+.uc-text h4 { font-size: 0.86rem; font-weight: 600; color: #0F172A; margin-bottom: 2px; }
+.uc-text p { font-size: 0.78rem; color: #64748B; line-height: 1.6; }
 
-.testi-small-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.testi-small {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 24px 26px;
-  box-shadow: var(--shadow);
+/* ══════════════════════════════════════════════
+   OUR WORK — dark section (template #past_work style)
+   3 stacked browser mockup windows
+══════════════════════════════════════════════ */
+#our-work {
+  background: #0B1525;
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
 }
-.testi-small blockquote {
-  font-size: 14px;
-  font-style: italic;
-  color: var(--text2);
-  line-height: 1.75;
-  margin-bottom: 18px;
+#our-work::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(8,189,176,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8,189,176,0.03) 1px, transparent 1px);
+  background-size: 52px 52px;
+  pointer-events: none;
 }
+#our-work::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: rgba(0,0,0,0.18);
+  pointer-events: none;
+}
+#our-work .wrapper { position: relative; z-index: 1; }
+#our-work .section-head h2 { color: #FFFFFF; }
+
+/* Stacked browser windows (template screenshot style) */
+.works-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.work-item {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.40);
+}
+.work-item:nth-child(2) { margin: -16px 48px 0; }
+.work-item:nth-child(3) { margin: -16px 96px 0; }
+.work-item:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.55); z-index: 2; position: relative; }
+
+.browser-chrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  background: rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.browser-url {
+  flex: 1;
+  background: rgba(0,0,0,0.25);
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.22);
+  margin: 0 8px;
+  font-family: monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.browser-screen {
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+  background: #0F1E35;
+}
+
+/* Screen 1: Lead Qualification Dashboard */
+.screen-leads {
+  background: linear-gradient(135deg, #0F1E35 0%, #122238 100%);
+  display: flex;
+  align-items: stretch;
+  padding: 16px;
+  gap: 12px;
+}
+.screen-sidebar {
+  width: 120px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.s-item {
+  height: 28px;
+  border-radius: 5px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.s-item.active { background: rgba(8,189,176,0.15); border-color: rgba(8,189,176,0.25); }
+.screen-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.screen-stat-row { display: flex; gap: 8px; }
+.s-stat {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+.s-stat-num {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #08BDB0;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.s-stat-lbl { font-size: 0.58rem; color: rgba(255,255,255,0.25); margin-top: 2px; }
+.s-table { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.s-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.s-dot-teal { width: 6px; height: 6px; border-radius: 50%; background: #08BDB0; flex-shrink: 0; }
+.s-dot-grey { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.15); flex-shrink: 0; }
+.s-line { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.08); flex: 1; }
+.s-badge {
+  font-size: 0.55rem;
+  padding: 1px 6px;
+  border-radius: 2rem;
+  background: rgba(8,189,176,0.15);
+  color: #08BDB0;
+  white-space: nowrap;
+  border: 1px solid rgba(8,189,176,0.25);
+}
+.s-badge-grey {
+  font-size: 0.55rem;
+  padding: 1px 6px;
+  border-radius: 2rem;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.28);
+  white-space: nowrap;
+}
+
+/* Screen 2: Support Agent Interface */
+.screen-support {
+  background: linear-gradient(135deg, #0F1E35, #111D30);
+  display: flex;
+  gap: 0;
+}
+.screen-chat {
+  flex: 1;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.chat-msg {
+  display: flex;
+  gap: 7px;
+  align-items: flex-start;
+}
+.chat-msg.user { flex-direction: row-reverse; }
+.chat-bubble {
+  max-width: 75%;
+  padding: 7px 11px;
+  border-radius: 10px;
+  font-size: 0.65rem;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.65);
+  background: rgba(255,255,255,0.05);
+}
+.chat-bubble.bot { background: rgba(8,189,176,0.12); border: 1px solid rgba(8,189,176,0.18); color: rgba(255,255,255,0.75); }
+.chat-avatar {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #08BDB0, #06B6D4);
+  flex-shrink: 0;
+}
+.chat-avatar-user {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+.screen-panel {
+  width: 130px;
+  border-left: 1px solid rgba(255,255,255,0.06);
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.panel-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.pm-val { font-size: 1.1rem; font-weight: 800; color: #08BDB0; letter-spacing: -0.5px; }
+.pm-lbl { font-size: 0.58rem; color: rgba(255,255,255,0.25); }
+.pm-bar { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.06); overflow: hidden; margin-top: 2px; }
+.pm-fill { height: 100%; border-radius: 2px; background: #08BDB0; }
+
+/* Screen 3: Automated Reporting */
+.screen-report {
+  background: linear-gradient(135deg, #0F1E35, #0D1A2E);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.report-top { display: flex; gap: 8px; }
+.report-kpi {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+.kpi-val { font-size: 1.05rem; font-weight: 800; color: #FFFFFF; letter-spacing: -0.5px; line-height: 1; }
+.kpi-delta { font-size: 0.58rem; color: #08BDB0; margin-top: 2px; }
+.kpi-lbl { font-size: 0.58rem; color: rgba(255,255,255,0.25); }
+.report-chart {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  padding: 8px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px;
+}
+.chart-bar {
+  flex: 1;
+  border-radius: 3px 3px 0 0;
+  background: rgba(8,189,176,0.20);
+  min-height: 8px;
+  transition: background 0.2s;
+}
+.chart-bar.hi { background: rgba(8,189,176,0.60); }
+.chart-bar.med { background: rgba(8,189,176,0.35); }
+
+/* Work item label */
+.work-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  background: rgba(0,0,0,0.15);
+}
+.work-label h4 { font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.75); margin: 0; }
+.work-label span { font-size: 0.68rem; color: #08BDB0; }
+
+/* Compact testimonials below browser windows */
+.testi-compact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 40px;
+}
+.testi-compact {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 20px 22px;
+}
+.testi-compact blockquote { font-size: 0.82rem; font-style: italic; color: rgba(255,255,255,0.50); line-height: 1.7; margin-bottom: 14px; }
+.testi-stars { color: #F59E0B; font-size: 0.78rem; letter-spacing: 2px; margin-bottom: 10px; }
+.testi-author { display: flex; align-items: center; gap: 10px; }
+.testi-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #08BDB0, #06B6D4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; font-weight: 800; color: #FFFFFF;
+  flex-shrink: 0;
+}
+.testi-meta strong { display: block; font-size: 0.82rem; font-weight: 600; color: #FFFFFF; }
+.testi-meta span { font-size: 0.72rem; color: rgba(255,255,255,0.35); }
 
 /* ══════════════════════════════════════════════
    COURSES
 ══════════════════════════════════════════════ */
-#courses { background: var(--bg3); border-top: 1px solid var(--border); }
+#courses {
+  background: #FFFFFF;
+  padding: 80px 0;
+  border-top: 1px solid #E8ECF0;
+}
 .courses-layout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; align-items: start; }
-
 .course-feat {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: var(--shadow);
-  transition: border-color 0.22s, box-shadow 0.22s, transform 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: border-color 0.22s, box-shadow 0.22s, transform 0.2s;
 }
-.course-feat:hover { border-color: var(--border2); box-shadow: var(--shadow3); transform: translateY(-3px); }
-
+.course-feat:hover { border-color: #CBD5E1; box-shadow: 0 12px 40px rgba(0,0,0,0.10); transform: translateY(-3px); }
 .course-thumb {
-  height: 172px;
-  background: linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 100%);
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
+  height: 160px;
+  background: linear-gradient(135deg, #0B1525, #162032);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
 }
 .course-thumb::before {
   content: '';
   position: absolute; inset: 0;
   background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 28px 28px;
-  opacity: 0.6;
+    linear-gradient(rgba(8,189,176,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8,189,176,0.07) 1px, transparent 1px);
+  background-size: 26px 26px;
 }
-.thumb-icon { position: relative; z-index: 1; color: var(--text2); }
-.thumb-icon svg { width: 48px; height: 48px; }
+.thumb-icon { position: relative; z-index: 1; color: rgba(255,255,255,0.25); }
+.thumb-icon svg { width: 44px; height: 44px; }
 .course-badge {
-  position: absolute;
-  top: 14px; right: 14px;
-  background: var(--accent);
-  color: #FFFFFF;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 100px;
-  z-index: 2;
+  position: absolute; top: 12px; right: 12px;
+  background: #08BDB0; color: #FFFFFF;
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 2rem; z-index: 2;
 }
-.course-body { padding: 26px; }
-.course-body h3 { font-size: 19px; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 8px; }
-.course-body p { font-size: 14px; color: var(--text2); line-height: 1.75; margin-bottom: 18px; }
-.course-meta { display: flex; gap: 16px; font-size: 12px; color: var(--text3); margin-bottom: 20px; }
+.course-body { padding: 22px; }
+.course-body h3 { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.2px; color: #0F172A; margin-bottom: 7px; }
+.course-body > p { font-size: 0.84rem; color: #64748B; line-height: 1.7; margin-bottom: 16px; }
+.course-meta { display: flex; gap: 14px; font-size: 0.72rem; color: #94A3B8; margin-bottom: 18px; }
 .course-meta span { display: flex; align-items: center; gap: 4px; }
-.course-meta svg { width: 12px; height: 12px; }
-
+.course-meta svg { width: 11px; height: 11px; }
 .courses-side { display: flex; flex-direction: column; gap: 12px; }
 .course-mini {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 18px 20px;
-  display: flex;
-  gap: 14px;
-  align-items: start;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 16px 18px;
+  display: flex; gap: 13px; align-items: start;
   cursor: pointer;
-  box-shadow: var(--shadow);
-  transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s ease;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s;
 }
-.course-mini:hover { border-color: var(--border2); box-shadow: var(--shadow2); transform: translateY(-2px); }
+.course-mini:hover { border-color: #CBD5E1; box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateY(-2px); }
 .mini-icon-wrap {
-  width: 42px; height: 42px;
-  border-radius: 10px;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text2);
-  flex-shrink: 0;
+  width: 40px; height: 40px; border-radius: 9px;
+  background: #F1F5F9; border: 1px solid #E2E8F0;
+  display: flex; align-items: center; justify-content: center;
+  color: #64748B; flex-shrink: 0;
 }
-.mini-icon-wrap svg { width: 18px; height: 18px; }
-.course-mini h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-.course-mini p { font-size: 12px; color: var(--text2); line-height: 1.65; margin-bottom: 10px; }
-.mini-meta { display: flex; gap: 8px; font-size: 11px; color: var(--text3); }
+.mini-icon-wrap svg { width: 17px; height: 17px; }
+.course-mini h4 { font-size: 0.86rem; font-weight: 600; color: #0F172A; margin-bottom: 3px; }
+.course-mini p { font-size: 0.75rem; color: #64748B; line-height: 1.6; margin-bottom: 8px; }
+.mini-meta { display: flex; gap: 7px; font-size: 0.68rem; color: #94A3B8; }
 
 /* ══════════════════════════════════════════════
    ABOUT
 ══════════════════════════════════════════════ */
-#about { background: var(--bg2); border-top: 1px solid var(--border); }
-.about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 72px; align-items: start; }
-.about-text h2 { font-size: clamp(26px, 3.2vw, 44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin: 12px 0 18px; }
-.about-text p { font-size: 15px; color: var(--text2); line-height: 1.85; margin-bottom: 12px; }
-.about-text p strong { color: var(--text); font-weight: 600; }
-.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 32px; }
+#about {
+  background: #EEF1F5;
+  padding: 80px 0;
+  border-top: 1px solid #E2E8F0;
+}
+.about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: start; }
+.about-text h2 { font-size: clamp(22px, 3vw, 38px); font-weight: 800; letter-spacing: -1.2px; line-height: 1.1; color: #0F172A; margin: 10px 0 16px; }
+.about-text h2 span { color: #08BDB0; }
+.about-text p { font-size: 0.94rem; color: #64748B; line-height: 1.85; margin-bottom: 12px; }
+.about-text p strong { color: #0F172A; font-weight: 600; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 28px; }
 .stat-card {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  cursor: default;
   transition: border-color 0.18s, box-shadow 0.18s;
-  cursor: default;
 }
-.stat-card:hover { border-color: var(--border2); box-shadow: var(--shadow2); }
-.stat-num { font-size: 28px; font-weight: 800; letter-spacing: -1px; color: var(--accent); line-height: 1; }
-.stat-lbl { font-size: 12px; color: var(--text2); margin-top: 4px; }
+.stat-card:hover { border-color: rgba(8,189,176,0.35); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.stat-num { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.8px; color: #08BDB0; line-height: 1; }
+.stat-lbl { font-size: 0.75rem; color: #64748B; margin-top: 3px; }
 
-.founders-col { display: flex; flex-direction: column; gap: 14px; }
+.founders-col { display: flex; flex-direction: column; gap: 12px; }
 .founder-card {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 22px;
-  display: flex;
-  gap: 16px;
-  align-items: start;
-  box-shadow: var(--shadow);
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 9px;
+  padding: 20px;
+  display: flex; gap: 14px; align-items: start;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   cursor: default;
-  transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s ease;
+  transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s;
 }
-.founder-card:hover { border-color: var(--border2); box-shadow: var(--shadow2); transform: translateX(3px); }
+.founder-card:hover { border-color: rgba(8,189,176,0.35); box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateX(3px); }
 .f-avatar {
-  width: 52px; height: 52px;
+  width: 48px; height: 48px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent) 0%, #06B6D4 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: 800;
-  color: #FFFFFF;
+  background: linear-gradient(135deg, #08BDB0, #06B6D4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; font-weight: 800; color: #FFFFFF;
   flex-shrink: 0;
 }
-.f-info h4 { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
-.f-role { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 7px; }
-.f-info p { font-size: 13px; color: var(--text2); line-height: 1.65; }
+.f-info h4 { font-size: 0.94rem; font-weight: 700; color: #0F172A; margin-bottom: 2px; }
+.f-role { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #08BDB0; margin-bottom: 6px; }
+.f-info p { font-size: 0.80rem; color: #64748B; line-height: 1.65; }
 
 /* ══════════════════════════════════════════════
-   CTA — clean dark block
+   CONTACT / CTA (template #contact — light grey, centred)
 ══════════════════════════════════════════════ */
-#cta { background: var(--bg3); border-top: 1px solid var(--border); }
-.cta-block {
-  background: var(--dark);
-  border-radius: var(--r-lg);
-  padding: 72px 64px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 64px;
-  align-items: center;
+#contact {
+  background: #E8ECF0;
+  padding: 80px 0 100px;
+  text-align: center;
+  border-top: 1px solid #D8DDE5;
 }
-.cta-text .eyebrow { color: rgba(13,148,136,0.9); margin-bottom: 14px; }
-.cta-text .eyebrow-line { background: var(--accent); }
-.cta-text h2 { font-size: clamp(24px, 3.2vw, 44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 12px; color: #FFFFFF; }
-.cta-text p { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.75; max-width: 400px; }
-.cta-actions { display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; align-items: flex-end; }
-.cta-note { font-size: 12px; color: rgba(255,255,255,0.35); }
+#contact h2.title {
+  font-size: clamp(26px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  color: #1E293B;
+  margin: 0 0 12px 0;
+  line-height: 1.1;
+}
+#contact p.sub-title {
+  font-size: 1rem;
+  color: #64748B;
+  max-width: 480px;
+  margin: 0 auto 36px;
+  line-height: 1.75;
+}
+.contact-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.contact-note { font-size: 0.72rem; color: #94A3B8; margin-top: 14px; }
 
 /* ══════════════════════════════════════════════
-   FOOTER
+   FOOTER (template style — simple)
 ══════════════════════════════════════════════ */
-footer { padding: 52px 0 28px; background: var(--dark); }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
-.footer-brand .logo { display: inline-block; margin-bottom: 12px; color: #FFFFFF; }
-.footer-brand .logo-dot { color: var(--accent); }
-.footer-brand p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.75; max-width: 240px; }
-.footer-col h5 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
-.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.footer-col ul a { font-size: 13px; color: rgba(255,255,255,0.5); transition: color 0.18s; cursor: pointer; }
-.footer-col ul a:hover { color: rgba(255,255,255,0.85); }
+footer {
+  background: #0B1525;
+  padding: 44px 0 22px;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+.footer-brand .logo { display: inline-block; margin-bottom: 10px; color: #FFFFFF; }
+.footer-brand .logo-dot { color: #08BDB0; }
+.footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.32); line-height: 1.75; max-width: 240px; }
+.footer-col h5 { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.28); margin-bottom: 14px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.footer-col ul a { font-size: 0.82rem; color: rgba(255,255,255,0.42); transition: color 0.18s; cursor: pointer; }
+.footer-col ul a:hover { color: rgba(255,255,255,0.82); }
 .footer-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 22px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  font-size: 12px;
-  color: rgba(255,255,255,0.3);
-  flex-wrap: wrap;
-  gap: 12px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  font-size: 0.75rem; color: rgba(255,255,255,0.26);
+  flex-wrap: wrap; gap: 10px;
 }
-.social-row { display: flex; gap: 8px; }
+.social-row { display: flex; gap: 7px; }
 .social-btn {
-  width: 32px; height: 32px;
-  border-radius: var(--r-sm);
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255,255,255,0.45);
-  cursor: pointer;
-  transition: border-color 0.18s, color 0.18s, background 0.18s;
+  width: 30px; height: 30px;
+  border-radius: 2rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.38); cursor: pointer;
+  transition: background 0.18s, color 0.18s;
 }
-.social-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.85); }
-.social-btn svg { width: 14px; height: 14px; }
+.social-btn:hover { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.85); }
+.social-btn svg { width: 13px; height: 13px; }
+.footer-copy {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.26);
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.footer-copy a { color: #08BDB0; }
 
 /* ══════════════════════════════════════════════
    SCROLL REVEAL
 ══════════════════════════════════════════════ */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.reveal.in { opacity: 1; transform: translateY(0); }
-
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.in  { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) {
   .reveal { transition: none !important; opacity: 1; transform: none; }
   .prog-fill { transition: none !important; }
-  .btn, .svc-card, .uc-card, .proc-card,
-  .founder-card, .course-mini, .course-feat { transition: none !important; }
 }
 
 /* ══════════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════════ */
 @media (max-width: 1024px) {
-  .hero-grid      { grid-template-columns: 1fr; gap: 48px; }
-  .metrics-panel  { max-width: 480px; }
-  .services-head  { grid-template-columns: 1fr; gap: 12px; }
-  .courses-layout { grid-template-columns: 1fr; }
-  .about-grid     { grid-template-columns: 1fr; gap: 48px; }
-  .cta-block      { grid-template-columns: 1fr; padding: 48px 36px; }
-  .cta-actions    { align-items: flex-start; flex-direction: row; }
-  .proc-grid      { grid-template-columns: 1fr 1fr; gap: 2px; }
-  .proc-card:first-child { border-radius: var(--r) 0 0 0; }
-  .proc-card:last-child  { border-radius: 0 var(--r) var(--r) 0; }
+  .courses-layout  { grid-template-columns: 1fr; }
+  .about-grid      { grid-template-columns: 1fr; gap: 44px; }
+  .proc-grid       { grid-template-columns: 1fr 1fr; }
+  .proc-grid::before { display: none; }
 }
 @media (max-width: 768px) {
-  section { padding: 64px 0; }
-  .container { padding: 0 20px; }
+  #banner  { padding-bottom: 100px; }
   .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
-  .hero h1 { letter-spacing: -1.8px; }
-  .svc-list         { grid-template-columns: 1fr; }
-  .uc-layout        { grid-template-columns: 1fr; }
-  .uc-left          { position: static; }
-  .testi-small-grid { grid-template-columns: 1fr; }
-  .footer-grid      { grid-template-columns: 1fr 1fr; }
-  .stats-grid       { grid-template-columns: 1fr 1fr; }
+  .svc-grid { grid-template-columns: 1fr; margin-top: -3rem; padding-bottom: 0; }
+  .svc-grid::before { display: none; }
+  .svc-card::after { display: none; }
+  .uc-layout { grid-template-columns: 1fr; }
+  .uc-left { position: static; }
+  .testi-compact-grid { grid-template-columns: 1fr; }
+  .work-item:nth-child(2) { margin: 12px 0 0; }
+  .work-item:nth-child(3) { margin: 12px 0 0; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 480px) {
-  .footer-grid  { grid-template-columns: 1fr; }
-  .proc-grid    { grid-template-columns: 1fr; gap: 2px; }
-  .proc-card:first-child { border-radius: var(--r) var(--r) 0 0; }
-  .proc-card:last-child  { border-radius: 0 0 var(--r) var(--r); }
-  .cta-actions  { flex-direction: column; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .proc-grid { grid-template-columns: 1fr; }
+  .contact-buttons { flex-direction: column; align-items: center; }
 }
   </style>
 </head>
@@ -850,7 +1127,7 @@ footer { padding: 52px 0 28px; background: var(--dark); }
 
 <!-- ── NAV ─────────────────────────────── -->
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="container">
+  <div class="wrapper">
     <div class="nav-row">
       <a href="#" class="logo">Automate<span class="logo-dot">.</span>AI</a>
       <ul class="nav-links" role="list">
@@ -859,7 +1136,7 @@ footer { padding: 52px 0 28px; background: var(--dark); }
         <li><a href="#courses">Courses</a></li>
         <li><a href="#about">About</a></li>
       </ul>
-      <a href="#cta" class="btn btn-accent nav-cta">Book a Call</a>
+      <a href="#contact" class="button button-highlight button-small nav-cta">Get in touch</a>
       <button class="hamburger" aria-label="Open menu" onclick="toggleDrawer()">
         <span></span><span></span><span></span>
       </button>
@@ -871,136 +1148,72 @@ footer { padding: 52px 0 28px; background: var(--dark); }
   <a href="#usecases" onclick="closeDrawer()">Use Cases</a>
   <a href="#courses"  onclick="closeDrawer()">Courses</a>
   <a href="#about"    onclick="closeDrawer()">About</a>
-  <a href="#cta" class="m-cta" onclick="closeDrawer()">Book a Call →</a>
+  <a href="#contact" class="m-cta" onclick="closeDrawer()">Get in touch →</a>
 </div>
 
-<!-- ── HERO ────────────────────────────── -->
+<!-- ── BANNER ───────────────────────────── -->
 <main>
-<section class="hero" aria-label="Hero">
-  <div class="container">
-    <div class="hero-grid">
-
-      <div class="hero-left">
-        <div class="hero-eyebrow">
-          <span class="eyebrow"><span class="eyebrow-line"></span>AI Automation Agency</span>
+<section id="banner" aria-label="Hero">
+  <div class="wrapper">
+    <div class="banner-content">
+      <div class="eyebrow"><span class="eyebrow-line"></span>AI Automation Agency</div>
+      <h1 class="title">
+        We don't implement AI<br>
+        <em>for the sake of it.</em>
+      </h1>
+      <h2 class="sub-title">
+        We fix operational bottlenecks and apply AI where it delivers real ROI.
+        No fluff. No buzzwords. Just measurable results.
+      </h2>
+      <div class="button-wrapper">
+        <a href="#contact" class="button button-highlight">
+          Book a Free Call
+          <i data-lucide="arrow-right" style="width:15px;height:15px;"></i>
+        </a>
+        <a href="#services" class="button button-secondary">Our Services</a>
+      </div>
+      <div class="banner-proof">
+        <div class="proof-item">
+          <div class="proof-num">50+</div>
+          <div class="proof-lbl">Companies helped</div>
         </div>
-        <h1>
-          We don't implement AI<br>
-          <em>for the sake of it.</em>
-        </h1>
-        <p class="hero-sub">
-          We fix operational bottlenecks and apply AI where it delivers real ROI.
-          No fluff. No buzzwords. Just measurable results.
-        </p>
-        <div class="hero-actions">
-          <a href="#cta" class="btn btn-accent btn-lg">
-            Book a Free Call
-            <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
-          </a>
-          <a href="#services" class="btn btn-outline btn-lg">Our Services</a>
+        <div class="proof-item">
+          <div class="proof-num">$2M+</div>
+          <div class="proof-lbl">Saved for clients</div>
         </div>
-        <div class="hero-proof">
-          <div class="proof-item">
-            <div class="proof-num">50+</div>
-            <div class="proof-lbl">Companies helped</div>
-          </div>
-          <div class="proof-item">
-            <div class="proof-num">$2M+</div>
-            <div class="proof-lbl">Saved for clients</div>
-          </div>
-          <div class="proof-item">
-            <div class="proof-num">3×</div>
-            <div class="proof-lbl">Average ROI</div>
-          </div>
+        <div class="proof-item">
+          <div class="proof-num">3×</div>
+          <div class="proof-lbl">Average ROI</div>
         </div>
       </div>
+    </div>
 
-      <div class="hero-right">
-        <div class="metrics-panel" id="metrics-panel">
-          <div class="panel-bar">
-            <span class="dot dot-r" aria-hidden="true"></span>
-            <span class="dot dot-y" aria-hidden="true"></span>
-            <span class="dot dot-g" aria-hidden="true"></span>
-            <span class="panel-title">Before → After AI</span>
-          </div>
-          <div class="metric-row">
-            <div class="metric-name">Lead qualification time</div>
-            <div class="metric-vals">
-              <span class="mv-before">4 hours</span>
-              <span class="mv-arr">→</span>
-              <span class="mv-after">18 min</span>
-            </div>
-            <div class="prog-track"><div class="prog-fill" data-width="92"></div></div>
-          </div>
-          <div class="metric-row">
-            <div class="metric-name">Weekly reporting</div>
-            <div class="metric-vals">
-              <span class="mv-before">Manual</span>
-              <span class="mv-arr">→</span>
-              <span class="mv-after">Automated</span>
-            </div>
-            <div class="prog-track"><div class="prog-fill" data-width="100"></div></div>
-          </div>
-          <div class="metric-row">
-            <div class="metric-name">Support ticket resolution</div>
-            <div class="metric-vals">
-              <span class="mv-before">43%</span>
-              <span class="mv-arr">→</span>
-              <span class="mv-after">91%</span>
-            </div>
-            <div class="prog-track"><div class="prog-fill" data-width="91"></div></div>
-          </div>
-          <div class="metric-row">
-            <div class="metric-name">Manual data entry / week</div>
-            <div class="metric-vals">
-              <span class="mv-before">24 hrs</span>
-              <span class="mv-arr">→</span>
-              <span class="mv-after">0 hrs</span>
-            </div>
-            <div class="prog-track"><div class="prog-fill" data-width="100"></div></div>
-          </div>
+    <!-- Trust strip inside banner (dark area) -->
+    <div class="trust">
+      <div class="trust-row">
+        <span class="trust-lbl">Trusted by teams at</span>
+        <div class="trust-names">
+          <span class="trust-name">TechVentures</span>
+          <span class="trust-name">ScaleForce</span>
+          <span class="trust-name">NovaBuild</span>
+          <span class="trust-name">Meridian Co.</span>
+          <span class="trust-name">PeakOps</span>
+          <span class="trust-name">Stackline</span>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ── TRUST ────────────────────────────── -->
-<div class="trust">
-  <div class="container">
-    <div class="trust-row">
-      <span class="trust-lbl">Trusted by teams at</span>
-      <div class="trust-names">
-        <span class="trust-name">TechVentures</span>
-        <span class="trust-name">ScaleForce</span>
-        <span class="trust-name">NovaBuild</span>
-        <span class="trust-name">Meridian Co.</span>
-        <span class="trust-name">PeakOps</span>
-        <span class="trust-name">Stackline</span>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- ── SERVICES (template layout — cards float up) ── -->
+<section id="services" class="cf" aria-labelledby="svc-heading">
+  <div class="wrapper">
 
-<!-- ── SERVICES ─────────────────────────── -->
-<section id="services" aria-labelledby="svc-heading">
-  <div class="container">
-    <div class="services-head reveal">
-      <div class="svc-intro">
-        <span class="eyebrow"><span class="eyebrow-line"></span>What We Do</span>
-        <h2 id="svc-heading">AI that moves<br>the <span class="hi">needle.</span></h2>
-      </div>
-      <p class="svc-intro-body">Three focused ways we unlock AI's real business value — no wasted spend, no aimless pilots. Every engagement starts with the problem, not the technology.</p>
-    </div>
-
-    <div class="svc-list">
+    <!-- Cards FIRST — they overlap banner below (template margin-top: -5rem) -->
+    <div class="svc-grid">
       <div class="svc-card reveal">
-        <div class="svc-top">
-          <span class="svc-num">01</span>
-          <div class="svc-arrow" aria-hidden="true"><i data-lucide="arrow-up-right" style="width:13px;height:13px;"></i></div>
-        </div>
-        <div class="svc-icon" aria-hidden="true"><i data-lucide="graduation-cap"></i></div>
+        <span class="svc-num-badge">01</span>
+        <div class="svc-icon-wrap" aria-hidden="true"><i data-lucide="graduation-cap"></i></div>
         <h3>Training &amp; Workshops</h3>
         <p>Practical, hands-on AI training for your whole team — product, ops, marketing, sales, and leadership. We turn AI curiosity into daily execution, fast.</p>
         <div class="chips">
@@ -1009,14 +1222,13 @@ footer { padding: 52px 0 28px; background: var(--dark); }
           <span class="chip">Team Upskilling</span>
           <span class="chip">Custom Curriculum</span>
         </div>
+        <a href="#contact" class="button button-highlight button-small">Learn More</a>
       </div>
 
       <div class="svc-card reveal">
-        <div class="svc-top">
-          <span class="svc-num">02</span>
-          <div class="svc-arrow" aria-hidden="true"><i data-lucide="arrow-up-right" style="width:13px;height:13px;"></i></div>
-        </div>
-        <div class="svc-icon" aria-hidden="true"><i data-lucide="map"></i></div>
+        <span class="svc-num-badge">02</span>
+        <div class="svc-icon-wrap" aria-hidden="true"><i data-lucide="map"></i></div>
+        <div class="feat-badge">Most Requested</div>
         <h3>Consulting &amp; AI Roadmap</h3>
         <p>We audit your operations, identify high-ROI opportunities, and design a clear AI strategy — so you invest where it actually counts.</p>
         <div class="chips">
@@ -1025,15 +1237,12 @@ footer { padding: 52px 0 28px; background: var(--dark); }
           <span class="chip">ROI Mapping</span>
           <span class="chip">CAIO as a Service</span>
         </div>
+        <a href="#contact" class="button button-highlight button-small">Learn More</a>
       </div>
 
-      <div class="svc-card featured reveal">
-        <div class="svc-top">
-          <span class="svc-num">03</span>
-          <div class="svc-arrow" aria-hidden="true"><i data-lucide="arrow-up-right" style="width:13px;height:13px;"></i></div>
-        </div>
-        <div class="svc-icon" aria-hidden="true"><i data-lucide="zap"></i></div>
-        <div class="feat-badge">Most Requested</div>
+      <div class="svc-card reveal">
+        <span class="svc-num-badge">03</span>
+        <div class="svc-icon-wrap" aria-hidden="true"><i data-lucide="zap"></i></div>
         <h3>Building &amp; Implementing</h3>
         <p>We don't just advise — we build. Custom AI agents, automations, and integrations that slot into your stack and deliver value from day one.</p>
         <div class="chips">
@@ -1042,18 +1251,26 @@ footer { padding: 52px 0 28px; background: var(--dark); }
           <span class="chip">RAG Systems</span>
           <span class="chip">Integrations</span>
         </div>
+        <a href="#contact" class="button button-highlight button-small">Learn More</a>
       </div>
+    </div>
+
+    <!-- Section intro appears below the floating cards -->
+    <div class="services-intro reveal">
+      <div class="eyebrow-tag"><span class="eyebrow-line" style="background:#08BDB0;"></span>What We Do</div>
+      <h2 id="svc-heading">AI that moves the <span>needle.</span></h2>
+      <p>Three focused ways we unlock AI's real business value — no wasted spend, no aimless pilots. Every engagement starts with the problem, not the technology.</p>
     </div>
   </div>
 </section>
 
 <!-- ── PROCESS ───────────────────────────── -->
 <section id="process">
-  <div class="container">
+  <div class="wrapper">
     <div class="section-head centered reveal">
-      <span class="eyebrow"><span class="eyebrow-line"></span>How We Work</span>
-      <h2>From bottleneck to <span class="hi">breakthrough.</span></h2>
-      <p>A focused four-step process that gets you from problem to production — no bloat, no delay.</p>
+      <div class="eyebrow-tag"><span class="eyebrow-line" style="background:#08BDB0;"></span>How We Work</div>
+      <h2>From bottleneck to <span>breakthrough.</span></h2>
+      <p>A focused four-step process — from problem to production, no bloat, no delay.</p>
     </div>
     <div class="proc-grid reveal">
       <div class="proc-card">
@@ -1082,13 +1299,13 @@ footer { padding: 52px 0 28px; background: var(--dark); }
 
 <!-- ── USE CASES ─────────────────────────── -->
 <section id="usecases">
-  <div class="container">
+  <div class="wrapper">
     <div class="uc-layout">
       <div class="uc-left reveal">
-        <span class="eyebrow"><span class="eyebrow-line"></span>Use Cases</span>
-        <h2>Real results.<br><span class="hi">Real ROI.</span></h2>
+        <div class="eyebrow-tag"><span class="eyebrow-line" style="background:#08BDB0;"></span>Use Cases</div>
+        <h2>Real results.<br><span>Real ROI.</span></h2>
         <p>Where we've seen AI deliver measurable, lasting business impact across industries.</p>
-        <a href="#cta" class="btn btn-accent">
+        <a href="#contact" class="button button-highlight">
           See if we can help
           <i data-lucide="arrow-right" style="width:15px;height:15px;"></i>
         </a>
@@ -1141,57 +1358,233 @@ footer { padding: 52px 0 28px; background: var(--dark); }
   </div>
 </section>
 
-<!-- ── TESTIMONIALS ──────────────────────── -->
-<section id="testimonials">
-  <div class="container">
+<!-- ── OUR WORK (template #past_work — dark, 3 browser mockups) ── -->
+<section id="our-work">
+  <div class="wrapper">
     <div class="section-head reveal">
-      <span class="eyebrow"><span class="eyebrow-line"></span>Client Feedback</span>
-      <h2>What our clients <span class="hi">say.</span></h2>
+      <div class="eyebrow-tag" style="color:#08BDB0;"><span class="eyebrow-line" style="background:#08BDB0;"></span>Our Work</div>
+      <h2>Real systems. <span style="color:#08BDB0;">Real results.</span></h2>
+      <p style="color:rgba(255,255,255,0.42); max-width:480px;">A look at the tools, dashboards, and automations we've shipped for clients across industries.</p>
     </div>
-    <div class="testi-featured reveal">
-      <div class="testi-stars" aria-label="5 stars">★★★★★</div>
-      <blockquote>"They didn't just implement AI — they identified a bottleneck I didn't even know I had and eliminated it. We saved 15 hours a week within the first month."</blockquote>
-      <div class="testi-author">
-        <div class="testi-avatar" aria-hidden="true">DM</div>
-        <div class="testi-meta">
-          <strong>Dana Miller</strong>
-          <span>COO, TechVentures</span>
+
+    <!-- 3 stacked browser windows -->
+    <div class="works-list reveal">
+
+      <!-- Window 1: Lead Qualification System -->
+      <div class="work-item">
+        <div class="browser-chrome">
+          <span class="dot dot-r" aria-hidden="true"></span>
+          <span class="dot dot-y" aria-hidden="true"></span>
+          <span class="dot dot-g" aria-hidden="true"></span>
+          <div class="browser-url">automate.ai/dashboard/leads</div>
+        </div>
+        <div class="browser-screen">
+          <div class="screen-leads">
+            <div class="screen-sidebar">
+              <div class="s-item active"></div>
+              <div class="s-item"></div>
+              <div class="s-item"></div>
+              <div class="s-item"></div>
+              <div class="s-item"></div>
+            </div>
+            <div class="screen-main">
+              <div class="screen-stat-row">
+                <div class="s-stat">
+                  <div class="s-stat-num">247</div>
+                  <div class="s-stat-lbl">Leads Qualified Today</div>
+                </div>
+                <div class="s-stat">
+                  <div class="s-stat-num">18m</div>
+                  <div class="s-stat-lbl">Avg. Qualify Time</div>
+                </div>
+                <div class="s-stat">
+                  <div class="s-stat-num">91%</div>
+                  <div class="s-stat-lbl">Accuracy</div>
+                </div>
+              </div>
+              <div class="s-table">
+                <div class="s-row">
+                  <span class="s-dot-teal"></span>
+                  <div class="s-line" style="max-width:120px;"></div>
+                  <div class="s-line" style="max-width:80px;"></div>
+                  <span class="s-badge">Hot Lead</span>
+                </div>
+                <div class="s-row">
+                  <span class="s-dot-teal"></span>
+                  <div class="s-line" style="max-width:100px;"></div>
+                  <div class="s-line" style="max-width:60px;"></div>
+                  <span class="s-badge">Hot Lead</span>
+                </div>
+                <div class="s-row">
+                  <span class="s-dot-grey"></span>
+                  <div class="s-line" style="max-width:140px;"></div>
+                  <div class="s-line" style="max-width:90px;"></div>
+                  <span class="s-badge-grey">Nurture</span>
+                </div>
+                <div class="s-row">
+                  <span class="s-dot-grey"></span>
+                  <div class="s-line" style="max-width:110px;"></div>
+                  <div class="s-line" style="max-width:70px;"></div>
+                  <span class="s-badge-grey">Nurture</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="work-label">
+          <h4>Sales Lead Qualification System</h4>
+          <span>TechVentures · 15 hrs/week saved</span>
         </div>
       </div>
-    </div>
-    <div class="testi-small-grid">
-      <div class="testi-small reveal">
+
+      <!-- Window 2: AI Support Agent -->
+      <div class="work-item">
+        <div class="browser-chrome">
+          <span class="dot dot-r" aria-hidden="true"></span>
+          <span class="dot dot-y" aria-hidden="true"></span>
+          <span class="dot dot-g" aria-hidden="true"></span>
+          <div class="browser-url">automate.ai/dashboard/support</div>
+        </div>
+        <div class="browser-screen">
+          <div class="screen-support">
+            <div class="screen-chat">
+              <div class="chat-msg">
+                <div class="chat-avatar" aria-hidden="true"></div>
+                <div class="chat-bubble bot">Hi! I've automatically reviewed your issue. Your refund has been processed — you'll receive confirmation within 2 hours.</div>
+              </div>
+              <div class="chat-msg user">
+                <div class="chat-avatar-user" aria-hidden="true"></div>
+                <div class="chat-bubble">How long will my refund take?</div>
+              </div>
+              <div class="chat-msg">
+                <div class="chat-avatar" aria-hidden="true"></div>
+                <div class="chat-bubble bot">Processing now. Expect 2-3 business days to reflect on your statement. Anything else?</div>
+              </div>
+            </div>
+            <div class="screen-panel">
+              <div class="panel-metric">
+                <div class="pm-val">91%</div>
+                <div class="pm-lbl">Resolution Rate</div>
+                <div class="pm-bar"><div class="pm-fill" style="width:91%;"></div></div>
+              </div>
+              <div class="panel-metric">
+                <div class="pm-val">3.2m</div>
+                <div class="pm-lbl">Avg Response</div>
+                <div class="pm-bar"><div class="pm-fill" style="width:68%;"></div></div>
+              </div>
+              <div class="panel-metric">
+                <div class="pm-val">24/7</div>
+                <div class="pm-lbl">Coverage</div>
+                <div class="pm-bar"><div class="pm-fill" style="width:100%;"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="work-label">
+          <h4>AI Customer Support Agent</h4>
+          <span>ScaleForce · 91% tickets resolved autonomously</span>
+        </div>
+      </div>
+
+      <!-- Window 3: Automated Reporting -->
+      <div class="work-item">
+        <div class="browser-chrome">
+          <span class="dot dot-r" aria-hidden="true"></span>
+          <span class="dot dot-y" aria-hidden="true"></span>
+          <span class="dot dot-g" aria-hidden="true"></span>
+          <div class="browser-url">automate.ai/dashboard/reports</div>
+        </div>
+        <div class="browser-screen">
+          <div class="screen-report">
+            <div class="report-top">
+              <div class="report-kpi">
+                <div class="kpi-val">$124K</div>
+                <div class="kpi-delta">↑ 34% vs last month</div>
+                <div class="kpi-lbl">Pipeline Value</div>
+              </div>
+              <div class="report-kpi">
+                <div class="kpi-val">0 hrs</div>
+                <div class="kpi-delta">↓ was 24 hrs/week</div>
+                <div class="kpi-lbl">Manual Data Entry</div>
+              </div>
+              <div class="report-kpi">
+                <div class="kpi-val">Auto</div>
+                <div class="kpi-delta">Every Monday 8am</div>
+                <div class="kpi-lbl">Report Delivery</div>
+              </div>
+            </div>
+            <div class="report-chart">
+              <div class="chart-bar med" style="height:40%;"></div>
+              <div class="chart-bar med" style="height:55%;"></div>
+              <div class="chart-bar hi" style="height:70%;"></div>
+              <div class="chart-bar med" style="height:50%;"></div>
+              <div class="chart-bar hi" style="height:85%;"></div>
+              <div class="chart-bar hi" style="height:90%;"></div>
+              <div class="chart-bar med" style="height:65%;"></div>
+              <div class="chart-bar hi" style="height:95%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="work-label">
+          <h4>Automated Reporting &amp; Analytics</h4>
+          <span>NovaBuild · 24 hrs manual work eliminated</span>
+        </div>
+      </div>
+
+    </div><!-- /.works-list -->
+
+    <!-- Compact testimonials below browser windows -->
+    <div class="testi-compact-grid">
+      <div class="testi-compact reveal">
+        <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+        <blockquote>"They didn't just implement AI — they identified a bottleneck I didn't even know I had. We saved 15 hours a week within the first month."</blockquote>
+        <div class="testi-author">
+          <div class="testi-avatar" aria-hidden="true">DM</div>
+          <div class="testi-meta">
+            <strong>Dana Miller</strong>
+            <span>COO, TechVentures</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-compact reveal">
         <div class="testi-stars" aria-label="5 stars">★★★★★</div>
         <blockquote>"The AI roadmap gave our leadership team total clarity on where to invest. ROI was visible within 6 weeks of going live."</blockquote>
         <div class="testi-author">
-          <div class="testi-avatar" style="width:36px;height:36px;font-size:12px;" aria-hidden="true">AT</div>
-          <div class="testi-meta"><strong>Alex Torres</strong><span>CEO, ScaleForce</span></div>
+          <div class="testi-avatar" aria-hidden="true">AT</div>
+          <div class="testi-meta">
+            <strong>Alex Torres</strong>
+            <span>CEO, ScaleForce</span>
+          </div>
         </div>
       </div>
-      <div class="testi-small reveal">
+      <div class="testi-compact reveal">
         <div class="testi-stars" aria-label="5 stars">★★★★★</div>
-        <blockquote>"The workshop completely shifted how our team thinks about AI. Practical, no-nonsense, and immediately applicable. Highly recommend."</blockquote>
+        <blockquote>"The workshop completely shifted how our team thinks about AI. Practical, no-nonsense, and immediately applicable."</blockquote>
         <div class="testi-author">
-          <div class="testi-avatar" style="width:36px;height:36px;font-size:12px;" aria-hidden="true">SR</div>
-          <div class="testi-meta"><strong>Sara Reeves</strong><span>Head of Product, NovaBuild</span></div>
+          <div class="testi-avatar" aria-hidden="true">SR</div>
+          <div class="testi-meta">
+            <strong>Sara Reeves</strong>
+            <span>Head of Product, NovaBuild</span>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
 <!-- ── COURSES ───────────────────────────── -->
 <section id="courses">
-  <div class="container">
+  <div class="wrapper">
     <div class="section-head reveal">
-      <span class="eyebrow"><span class="eyebrow-line"></span>Courses</span>
-      <h2>Learn at your <span class="hi">own pace.</span></h2>
+      <div class="eyebrow-tag"><span class="eyebrow-line" style="background:#08BDB0;"></span>Courses</div>
+      <h2>Learn at your <span>own pace.</span></h2>
       <p>Self-paced AI courses built for business teams — no coding required.</p>
     </div>
     <div class="courses-layout">
       <div class="course-feat reveal">
         <div class="course-thumb">
-          <div class="thumb-icon" aria-hidden="true"><i data-lucide="cpu" style="width:48px;height:48px;"></i></div>
+          <div class="thumb-icon" aria-hidden="true"><i data-lucide="cpu" style="width:44px;height:44px;"></i></div>
           <span class="course-badge">Bestseller</span>
         </div>
         <div class="course-body">
@@ -1202,8 +1595,8 @@ footer { padding: 52px 0 28px; background: var(--dark); }
             <span><i data-lucide="layers"></i>12 lessons</span>
             <span><i data-lucide="target"></i>Beginner</span>
           </div>
-          <a href="#cta" class="btn btn-accent" style="width:100%;">
-            Enroll Now <i data-lucide="arrow-right" style="width:15px;height:15px;"></i>
+          <a href="#contact" class="button button-highlight" style="width:100%;justify-content:center;">
+            Enroll Now <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
           </a>
         </div>
       </div>
@@ -1214,7 +1607,7 @@ footer { padding: 52px 0 28px; background: var(--dark); }
             <h4>Build Your First AI Automation</h4>
             <p>Design and deploy your first AI-powered workflow using no-code tools.</p>
             <div class="mini-meta"><span>6 hrs</span><span>·</span><span>18 lessons</span><span>·</span><span>Intermediate</span></div>
-            <a href="#cta" class="btn btn-outline" style="margin-top:12px;font-size:13px;padding:8px 16px;">Enroll Now</a>
+            <a href="#contact" class="button button-outline" style="margin-top:10px;padding:0.4rem 1.4rem;font-size:0.78rem;">Enroll Now</a>
           </div>
         </div>
         <div class="course-mini reveal">
@@ -1223,7 +1616,7 @@ footer { padding: 52px 0 28px; background: var(--dark); }
             <h4>Strategic AI Roadmap for Leaders</h4>
             <p>Evaluate and execute AI initiatives that move the business forward.</p>
             <div class="mini-meta"><span>3 hrs</span><span>·</span><span>9 lessons</span><span>·</span><span>Advanced</span></div>
-            <a href="#cta" class="btn btn-outline" style="margin-top:12px;font-size:13px;padding:8px 16px;">Enroll Now</a>
+            <a href="#contact" class="button button-outline" style="margin-top:10px;padding:0.4rem 1.4rem;font-size:0.78rem;">Enroll Now</a>
           </div>
         </div>
       </div>
@@ -1233,11 +1626,11 @@ footer { padding: 52px 0 28px; background: var(--dark); }
 
 <!-- ── ABOUT ─────────────────────────────── -->
 <section id="about">
-  <div class="container">
+  <div class="wrapper">
     <div class="about-grid">
       <div class="about-text reveal">
-        <span class="eyebrow"><span class="eyebrow-line"></span>Who Are We</span>
-        <h2>Built by practitioners,<br><span class="hi">not theorists.</span></h2>
+        <div class="eyebrow-tag"><span class="eyebrow-line" style="background:#08BDB0;"></span>Who Are We</div>
+        <h2>Built by practitioners,<br><span>not theorists.</span></h2>
         <p>We're <strong>Moshe and Nadav</strong> — two builders who got tired of watching businesses implement AI the wrong way: expensive, aimless, and with nothing to show for it.</p>
         <p>So we built the agency we wished existed: one that <strong>starts with the problem, not the technology.</strong> We've helped companies across industries find and fix the exact bottlenecks where AI generates real, measurable returns.</p>
         <p>No slide decks. No 12-week transformation programmes. Just clear thinking, fast execution, and results you can point to.</p>
@@ -1265,28 +1658,72 @@ footer { padding: 52px 0 28px; background: var(--dark); }
             <p>Builds the automations, agents, and systems that transform strategy into running software with measurable outcomes from day one.</p>
           </div>
         </div>
+
+        <!-- Before → After metrics panel (moved from hero) -->
+        <div class="metrics-panel" id="metrics-panel" style="margin-top:4px;">
+          <div class="panel-bar">
+            <span class="dot dot-r" aria-hidden="true"></span>
+            <span class="dot dot-y" aria-hidden="true"></span>
+            <span class="dot dot-g" aria-hidden="true"></span>
+            <span class="panel-title">Before → After AI</span>
+          </div>
+          <div class="metric-row">
+            <div class="metric-name">Lead qualification time</div>
+            <div class="metric-vals">
+              <span class="mv-before">4 hours</span>
+              <span class="mv-arr">→</span>
+              <span class="mv-after">18 min</span>
+            </div>
+            <div class="prog-track"><div class="prog-fill" data-width="92"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-name">Weekly reporting</div>
+            <div class="metric-vals">
+              <span class="mv-before">Manual</span>
+              <span class="mv-arr">→</span>
+              <span class="mv-after">Automated</span>
+            </div>
+            <div class="prog-track"><div class="prog-fill" data-width="100"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-name">Support ticket resolution</div>
+            <div class="metric-vals">
+              <span class="mv-before">43%</span>
+              <span class="mv-arr">→</span>
+              <span class="mv-after">91%</span>
+            </div>
+            <div class="prog-track"><div class="prog-fill" data-width="91"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-name">Manual data entry / week</div>
+            <div class="metric-vals">
+              <span class="mv-before">24 hrs</span>
+              <span class="mv-arr">→</span>
+              <span class="mv-after">0 hrs</span>
+            </div>
+            <div class="prog-track"><div class="prog-fill" data-width="100"></div></div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── CTA ──────────────────────────────── -->
-<section id="cta">
-  <div class="container">
-    <div class="cta-block reveal">
-      <div class="cta-text">
-        <span class="eyebrow"><span class="eyebrow-line"></span>Let's Talk</span>
-        <h2>Ready to find your<br>real bottleneck?</h2>
-        <p>Book a free 30-minute discovery call. We'll identify exactly where AI can move the needle — no commitment, no fluff.</p>
-      </div>
-      <div class="cta-actions">
-        <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-lg">
+<!-- ── CONTACT (template #contact style) ── -->
+<section id="contact">
+  <div class="wrapper">
+    <div class="reveal">
+      <h2 class="title">Get In Touch</h2>
+      <p class="sub-title">Book a free 30-minute discovery call. We'll identify exactly where AI can move the needle — no commitment, no fluff.</p>
+      <div class="contact-buttons">
+        <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" class="button button-highlight button-large">
           Book a Free Call
           <i data-lucide="calendar" style="width:16px;height:16px;"></i>
         </a>
-        <a href="mailto:hello@youragency.ai" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,0.2);color:#fff;">Send an Email</a>
-        <span class="cta-note">Free · No commitment · 30 min</span>
+        <a href="mailto:hello@youragency.ai" class="button button-outline button-large">Send an Email</a>
       </div>
+      <p class="contact-note">Free · No commitment · 30 min</p>
     </div>
   </div>
 </section>
@@ -1294,7 +1731,7 @@ footer { padding: 52px 0 28px; background: var(--dark); }
 
 <!-- ── FOOTER ────────────────────────────── -->
 <footer>
-  <div class="container">
+  <div class="wrapper">
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#" class="logo">Automate<span class="logo-dot">.</span>AI</a>
@@ -1321,7 +1758,7 @@ footer { padding: 52px 0 28px; background: var(--dark); }
         <ul>
           <li><a href="#about">About Us</a></li>
           <li><a href="mailto:hello@youragency.ai">Contact</a></li>
-          <li><a href="#cta">Book a Call</a></li>
+          <li><a href="#contact">Book a Call</a></li>
         </ul>
       </div>
     </div>
